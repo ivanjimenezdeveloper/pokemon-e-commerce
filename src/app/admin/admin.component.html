@@ -1,0 +1,20 @@
+<div class="h-100vh">
+  <!-- <app-nav-bar class="navBar"></app-nav-bar> -->
+
+  <mat-drawer-container class="h-100vh" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button mat-raised-button>Toggle extra text</button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
+
+  <!-- <div class="main"><router-outlet></router-outlet></div> -->
+</div>

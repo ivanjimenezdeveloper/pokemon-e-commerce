@@ -1,0 +1,14 @@
+.admin__wrapper {
+  display: grid;
+  grid-template-columns: repeat(12);
+  grid-gap: 0px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.admin__navBar {
+  grid-column: 1 / 12;
+  grid-row: 1;
+}
+.admin__main {
+  grid-column: 1 / 12;
+  grid-row: 2;
+}

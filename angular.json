@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pokemon-ecommerce",
+            "outputPath": "dist/pokemon-ecommerce/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -99,6 +99,60 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/pokemon-ecommerce/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "pokemon-ecommerce:build:development",
+              "serverTarget": "pokemon-ecommerce:server:development"
+            },
+            "production": {
+              "browserTarget": "pokemon-ecommerce:build:production",
+              "serverTarget": "pokemon-ecommerce:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pokemon-ecommerce:build:production",
+              "serverTarget": "pokemon-ecommerce:server:production"
+            },
+            "development": {
+              "browserTarget": "pokemon-ecommerce:build:development",
+              "serverTarget": "pokemon-ecommerce:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
