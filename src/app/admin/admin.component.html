@@ -1,20 +1,25 @@
 <div class="h-100vh">
-  <!-- <app-nav-bar class="navBar"></app-nav-bar> -->
+  <mat-toolbar color="primary" class="navbar-sticky">
+    <mat-toolbar-row class="navbar">
+      <mat-icon class="navBarButton" (click)="toggleMenu()">menu</mat-icon>
+      <div
+        class="nav-links mat-primary"
+        [ngClass]="
+          this.showMenuMobile ? 'navbar__mobile_show' : 'navbar__mobile'
+        "
+      >
+        <mat-icon class="navBarButton float-right" (click)="toggleMenu()"
+          >close</mat-icon
+        >
 
-  <mat-drawer-container class="h-100vh" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button mat-raised-button>Toggle extra text</button>
-    </mat-drawer>
-
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
-    </div>
-    <router-outlet></router-outlet>
-  </mat-drawer-container>
-
-  <!-- <div class="main"><router-outlet></router-outlet></div> -->
+        <button mat-button href="#">Home</button>
+        <button mat-button href="#">About</button>
+        <button mat-button href="#">Project</button>
+        <button mat-button href="#">Services</button>
+        <button mat-button href="#">Contact</button>
+        <button mat-button class="loginBtn">Login</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
 </div>
