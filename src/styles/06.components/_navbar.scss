@@ -1,0 +1,54 @@
+.navbar {
+  height: 70px;
+  width: 100%;
+  padding: 14px 30px;
+
+  &__navbar-sticky {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  }
+
+  &__nav-links {
+    display: block;
+    font-size: 18px;
+  }
+  &__buttonHidden {
+    display: none;
+  }
+  &__h-0 {
+    height: auto;
+  }
+  @media (max-width: 700px) {
+    &__mobile {
+      height: 0;
+    }
+    &__buttonHidden {
+      display: block;
+    }
+
+    &__mobile_show {
+      height: 100vh;
+    }
+    &__button {
+      font-size: 30px;
+    }
+    &__nav-links {
+      position: absolute;
+      display: block;
+      text-align: center;
+      width: 50%;
+      background-color: #c2185b;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 0px;
+      left: 0px;
+    }
+
+    &__nav-links button {
+      width: 100%;
+      display: table-column;
+    }
+  }
+}

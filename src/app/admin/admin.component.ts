@@ -10,8 +10,4 @@ export class AdminComponent implements OnInit {
   showMenuMobile: boolean = false;
 
   ngOnInit() {}
-
-  toggleMenu() {
-    this.showMenuMobile = !this.showMenuMobile;
-  }
 }

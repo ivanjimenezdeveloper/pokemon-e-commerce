@@ -1,0 +1,63 @@
+<mat-toolbar color="primary" class="navbar-sticky">
+  <mat-toolbar-row class="navbar">
+    <mat-icon class="navbar__buttonHidden" (click)="toggleMenu()"
+      >menu</mat-icon
+    >
+    <div
+      class="navbar__nav-links"
+      [class.mat-elevation-z8]="this.showMenuMobile && this.mobile"
+      [ngClass]="this.showMenuMobile ? 'navbar__mobile_show' : 'navbar__mobile'"
+    >
+      <div [ngClass]="this.showMenuMobile ? 'm6' : ''">
+        <mat-icon
+          class="float-right navbar__buttonHidden"
+          (click)="toggleMenu()"
+          >close</mat-icon
+        >
+
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          Home
+        </button>
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          About
+        </button>
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          Project
+        </button>
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          Services
+        </button>
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          Contact
+        </button>
+        <button
+          mat-button
+          class="navbar__button"
+          [ngClass]="this.mobile ? 'm-b-6' : ''"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
