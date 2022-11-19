@@ -5,21 +5,34 @@
 
   &__navbar-sticky {
     position: sticky;
-    position: -webkit-sticky; /* For macOS/iOS Safari */
-    top: 0; /* Sets the sticky toolbar to be on top */
-    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   &__nav-links {
     display: block;
     font-size: 18px;
   }
+
   &__buttonHidden {
     display: none;
   }
+
   &__h-0 {
     height: auto;
   }
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__menu-icon {
+    // @extend .aling-self_center;
+    // @extend .button-icon-size-reset;
+    // @extend .icon-font-size-md;
+    // @extend .m-0;
+  }
+
   @media (max-width: 700px) {
     &__mobile {
       height: 0;
@@ -34,6 +47,7 @@
     &__button {
       font-size: 30px;
     }
+
     &__nav-links {
       position: absolute;
       display: block;
@@ -49,6 +63,12 @@
     &__nav-links button {
       width: 100%;
       display: table-column;
+    }
+
+    &__menu-icon {
+      font-size: 30px !important;
+      width: 30px !important;
+      height: 30px !important;
     }
   }
 }

@@ -4,11 +4,14 @@
       >menu</mat-icon
     >
     <div
-      class="navbar__nav-links"
-      [class.mat-elevation-z8]="this.showMenuMobile && this.mobile"
+      class="navbar__nav-links {{ !this.isMobile ? 'w-100' : '' }}"
+      [class.mat-elevation-z8]="this.showMenuMobile && this.isMobile"
       [ngClass]="this.showMenuMobile ? 'navbar__mobile_show' : 'navbar__mobile'"
     >
-      <div [ngClass]="this.showMenuMobile ? 'm6' : ''">
+      <div
+        class="{{ !this.isMobile ? 'd-flex' : '' }}"
+        [ngClass]="this.showMenuMobile ? 'm6' : ''"
+      >
         <mat-icon
           class="float-right navbar__buttonHidden"
           (click)="toggleMenu()"
@@ -18,45 +21,62 @@
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
           Home
         </button>
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
           About
         </button>
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
           Project
         </button>
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
           Services
         </button>
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
           Contact
+        </button>
+        <span *ngIf="!this.isMobile" class="navbar__spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="accountMenu">
+          <mat-icon
+            class="aling-self_center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
+            >account_circle</mat-icon
+          >
         </button>
         <button
           mat-button
           class="navbar__button"
-          [ngClass]="this.mobile ? 'm-b-6' : ''"
+          [ngClass]="this.isMobile ? 'm-b-6' : ''"
         >
-          Login
+          <mat-icon
+            class="aling-self_center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
+            >shopping_cart</mat-icon
+          >
+          <span class="m-l-2"> 12,37 €</span>
         </button>
+
+        <mat-menu #accountMenu="matMenu">
+          <button mat-menu-item>Logout</button>
+          <button mat-menu-item>Login</button>
+        </mat-menu>
       </div>
     </div>
   </mat-toolbar-row>

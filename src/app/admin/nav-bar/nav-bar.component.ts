@@ -10,7 +10,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   constructor() {}
 
   showMenuMobile: boolean = false;
-  mobile: boolean = false;
+  isMobile: boolean = false;
   resizeObservable$: Observable<Event> | undefined;
   resizeSubscription$: Subscription = new Subscription();
 
@@ -23,8 +23,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.resizeSubscription$ = this.resizeObservable$.subscribe(
       (event: any) => {
         const windowSize = event.target.innerWidth;
-        this.mobile = windowSize <= 700 ? true : false;
-        if (!this.mobile && this.showMenuMobile) {
+        this.isMobile = windowSize <= 700 ? true : false;
+        if (!this.isMobile && this.showMenuMobile) {
           this.showMenuMobile = false;
         }
       }
