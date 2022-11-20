@@ -22,7 +22,7 @@
           mat-button
           class="navbar__button"
           [ngClass]="this.isMobile ? 'm-b-6' : ''"
-          (click)="navegacionHome()"
+          (click)="navigateHome()"
         >
           Home
         </button>
@@ -30,29 +30,9 @@
           mat-button
           class="navbar__button"
           [ngClass]="this.isMobile ? 'm-b-6' : ''"
+          (click)="navigateShop()"
         >
-          About
-        </button>
-        <button
-          mat-button
-          class="navbar__button"
-          [ngClass]="this.isMobile ? 'm-b-6' : ''"
-        >
-          Project
-        </button>
-        <button
-          mat-button
-          class="navbar__button"
-          [ngClass]="this.isMobile ? 'm-b-6' : ''"
-        >
-          Services
-        </button>
-        <button
-          mat-button
-          class="navbar__button"
-          [ngClass]="this.isMobile ? 'm-b-6' : ''"
-        >
-          Contact
+          Comprar
         </button>
         <span *ngIf="!this.isMobile" class="navbar__spacer"></span>
 
@@ -66,6 +46,7 @@
           mat-button
           class="navbar__button"
           [ngClass]="this.isMobile ? 'm-b-6' : ''"
+          (click)="navigateShoppingCart()"
         >
           <mat-icon
             class="align-self-center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
@@ -76,7 +57,7 @@
 
         <mat-menu #accountMenu="matMenu">
           <button mat-menu-item>Logout</button>
-          <button mat-menu-item>Login</button>
+          <button mat-menu-item (click)="navigateLogin()">Login</button>
         </mat-menu>
       </div>
     </div>

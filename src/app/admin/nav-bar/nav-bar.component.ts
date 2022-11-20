@@ -19,9 +19,21 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.onResize();
   }
 
-  navegacionHome() {
+  navigateHome() {
     this.router.navigateByUrl('');
   }
+
+  navigateShop() {
+    this.router.navigateByUrl('shop');
+  }
+
+  navigateLogin() {
+    this.router.navigateByUrl('login');
+  }
+  navigateShoppingCart() {
+    this.router.navigateByUrl('shopping-cart');
+  }
+
   onResize() {
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe(
