@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { OfferComponent } from './offer/offer.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { AdminRoutingModule } from './admin-routing.module';
     MatSidenavModule,
     SharedModulesModule,
   ],
-  declarations: [AdminComponent, LandingPageComponent, NavBarComponent],
+  declarations: [AdminComponent, LandingPageComponent, NavBarComponent, OfferComponent],
 })
 export class AdminModule {}
