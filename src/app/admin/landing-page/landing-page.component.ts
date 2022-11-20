@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
   constructor() {}
-
+  offers = [2, 3, 4, 4];
   ngOnInit(): void {}
 }

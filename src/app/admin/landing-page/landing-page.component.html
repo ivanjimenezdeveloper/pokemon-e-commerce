@@ -1,15 +1,14 @@
 <div
   class="h-100 w-100 d-flex align-items-center justify-content-center flex-direction-column"
 >
-  <section class="row w-100 align-items-center h-100vh">
+  <section class="row w-100 align-items-center video__section">
     <article class="col-xs-12">
       <div>
-        <video autoplay muted loop class="video__background">
+        <video autoplay loop [muted]="true" class="video__background">
           <source
             src="../../../assets/videos/food-background.mp4"
             type="video/mp4"
           />
-          Your browser does not support HTML5 video.
         </video>
       </div>
       <div class="col-xs-12">
@@ -34,17 +33,34 @@
     </article>
   </section>
   <section class="row w-100">
-    <article class="col-xs-12 col-sm-6">
-      <div class="p-t-12"><div class="sisis">ola</div></div>
-    </article>
-    <article class="col-xs-12 col-sm-6">
-      <div class="p-t-12"><div class="sisis">ola</div></div>
-    </article>
-    <article class="col-xs-12 col-sm-6">
-      <div class="p-t-12"><div class="sisis">ola</div></div>
-    </article>
-    <article class="col-xs-12 col-sm-6">
-      <div class="p-t-12"><div class="sisis">ola</div></div>
+    <article
+      *ngFor="let item of offers; let i = index"
+      class="col-xs-12 col-sm-6"
+    >
+      <div class="p-t-12 row">
+        <div class="col-xs-12">
+          <div class="offer-box row align-content-baseline">
+            <div class="col-xs-12 offer-box__row p-y-3 m-t-24">
+              <span class="offer-box__text offer-box__subtitle1"
+                >Puta que oferton</span
+              >
+            </div>
+            <div class="col-xs-12 offer-box__row p-y-3">
+              <span class="offer-box__text offer-box__title">1234</span>
+            </div>
+            <div class="col-xs-12 offer-box__row p-y-3">
+              <span class="offer-box__text offer-box__subtitle2">1234</span>
+            </div>
+            <div class="col-xs-12 offer-box__row p-y-3">
+              <span class="offer-box__text"
+                ><button mat-raised-button color="primary">
+                  Comprar
+                </button></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </article>
   </section>
 </div>

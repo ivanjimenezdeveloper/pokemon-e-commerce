@@ -20,7 +20,12 @@
 .flex-direction-column {
   flex-direction: column;
 }
-
+.align-content-center {
+  align-content: center;
+}
+.align-content-baseline {
+  align-content: baseline;
+}
 .align-self-center {
   align-self: center;
 }

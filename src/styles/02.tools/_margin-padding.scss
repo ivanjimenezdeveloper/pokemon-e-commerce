@@ -1,6 +1,10 @@
-@for $i from 1 through 12 {
+@for $i from 1 through 48 {
   .m-0 {
     margin: 0px !important;
+  }
+  .m-x-0 {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .m#{$i} {
@@ -33,6 +37,10 @@
     margin-left: #{2px * $i} !important;
   }
 
+  .p-x-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .p#{$i} {
     padding: #{2px * $i} !important;
   }
