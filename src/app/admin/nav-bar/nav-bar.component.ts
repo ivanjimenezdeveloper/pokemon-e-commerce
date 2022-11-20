@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -7,7 +8,7 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor(private router: Router) {}
 
   showMenuMobile: boolean = false;
   isMobile: boolean = false;
@@ -18,6 +19,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.onResize();
   }
 
+  navegacionHome() {
+    this.router.navigateByUrl('');
+  }
   onResize() {
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe(

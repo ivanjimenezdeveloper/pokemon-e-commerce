@@ -17,6 +17,18 @@
   display: flex !important;
 }
 
-.aling-self_center {
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.align-self-center {
   align-self: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
