@@ -1,0 +1,35 @@
+.shop {
+  display: grid;
+  grid-template-columns: 1fr 2fr 6fr 1fr;
+  grid-template-rows: 1fr;
+
+  &__menu {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    height: 100vh;
+
+    ul {
+      list-style-type: none;
+    }
+  }
+
+  &__products {
+    grid-column-start: 3;
+    background-color: blueviolet;
+    height: 100vh;
+  }
+  @media (max-width: 767px) {
+    &__menu {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      display: none;
+    }
+
+    &__products {
+      grid-column-start: 2;
+      grid-column-end: 4;
+      background-color: blueviolet;
+      height: 100vh;
+    }
+  }
+}

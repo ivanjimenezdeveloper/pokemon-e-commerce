@@ -37,6 +37,9 @@
     margin-left: #{2px * $i} !important;
   }
 
+  .p-0 {
+    padding: 0;
+  }
   .p-x-0 {
     padding-left: 0px;
     padding-right: 0px;
