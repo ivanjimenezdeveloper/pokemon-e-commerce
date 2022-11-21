@@ -6,11 +6,23 @@
   &__menu {
     grid-column-start: 2;
     grid-column-end: 3;
-    height: 100vh;
+    min-height: 100vh;
 
     ul {
       list-style-type: none;
     }
+  }
+  &__toolbar-row {
+    position: relative;
+  }
+  &__buttonHidden {
+    position: absolute;
+    display: none;
+    right: 0;
+  }
+
+  &__button-menu {
+    display: none;
   }
 
   &__products {
@@ -19,17 +31,28 @@
     height: 100vh;
   }
   @media (max-width: 767px) {
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    &__buttonHidden {
+      display: block;
+    }
     &__menu {
       grid-column-start: 2;
-      grid-column-end: 3;
+      grid-column-end: 4;
+      min-height: fit-content;
       display: none;
+    }
+
+    &__button-menu {
+      display: block;
     }
 
     &__products {
       grid-column-start: 2;
       grid-column-end: 4;
       background-color: blueviolet;
-      height: 100vh;
+      min-height: 100vh;
     }
   }
 }
