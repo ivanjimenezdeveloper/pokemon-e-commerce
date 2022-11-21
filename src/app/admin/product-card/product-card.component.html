@@ -18,11 +18,9 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="justify-content-center m-t-6">
-    <button mat-raised-button color="primary">Comprar</button>
-    <div *ngIf="false">
-      <button mat-raised-button color="primary">-</button>
-      <span class="m-x-6">1</span>
-      <button mat-raised-button color="primary">+</button>
+    <!-- <button mat-raised-button color="primary">Comprar</button> -->
+    <div *ngIf="true">
+      <app-quantity-selector></app-quantity-selector>
     </div>
   </mat-card-actions>
 </mat-card>

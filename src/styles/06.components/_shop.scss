@@ -12,6 +12,7 @@
       list-style-type: none;
     }
   }
+
   &__toolbar-row {
     position: relative;
   }
@@ -51,7 +52,6 @@
     &__products {
       grid-column-start: 2;
       grid-column-end: 4;
-      background-color: blueviolet;
       min-height: 100vh;
     }
   }

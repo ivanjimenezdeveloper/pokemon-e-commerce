@@ -10,9 +10,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { QuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
 
 @NgModule({
-  imports: [CommonModule, AdminRoutingModule, SharedModulesModule],
   declarations: [
     AdminComponent,
     LandingPageComponent,
@@ -22,6 +22,12 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ShopComponent,
     ProductCardComponent,
+  ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    SharedModulesModule,
+    QuantitySelectorComponent,
   ],
 })
 export class AdminModule {}
