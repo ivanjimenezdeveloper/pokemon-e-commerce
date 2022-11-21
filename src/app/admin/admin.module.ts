@@ -9,6 +9,7 @@ import { OfferComponent } from './offer/offer.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
 import { ShopComponent } from './shop/shop.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   imports: [CommonModule, AdminRoutingModule, SharedModulesModule],
@@ -20,6 +21,7 @@ import { ShopComponent } from './shop/shop.component';
     ShoppingCartComponent,
     LoginComponent,
     ShopComponent,
+    ProductCardComponent,
   ],
 })
 export class AdminModule {}

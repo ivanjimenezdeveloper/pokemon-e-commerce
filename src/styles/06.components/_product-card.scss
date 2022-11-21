@@ -1,0 +1,12 @@
+.product {
+  &__card {
+    height: fit-content;
+    overflow-y: hidden;
+    color: black;
+    background-color: gray;
+    max-width: 400px;
+  }
+  &__image {
+    width: 100%;
+  }
+}

@@ -27,16 +27,16 @@
 
   &__products {
     grid-column-start: 3;
-    background-color: blueviolet;
-    height: 100vh;
+    min-height: 100vh;
   }
+
   @media (max-width: 767px) {
     grid-template-columns: 1fr 6fr 1fr;
-    grid-template-rows: 1fr 1fr;
 
     &__buttonHidden {
       display: block;
     }
+
     &__menu {
       grid-column-start: 2;
       grid-column-end: 4;
