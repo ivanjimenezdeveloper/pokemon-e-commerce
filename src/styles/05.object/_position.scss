@@ -20,6 +20,11 @@
 .flex-direction-column {
   flex-direction: column !important;
 }
+
+.flex-flow--column {
+  flex-flow: column;
+}
+
 .align-content-center {
   align-content: center;
 }
@@ -28,6 +33,9 @@
 }
 .align-self-center {
   align-self: center;
+}
+.align-self--baseline {
+  align-self: baseline;
 }
 
 .align-items-center {
@@ -43,9 +51,9 @@
 }
 
 .p-0 {
-  padding: 0;
+  padding: 0 !important;
 }
 .p-x-0 {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }

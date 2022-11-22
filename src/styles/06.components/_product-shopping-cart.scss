@@ -1,0 +1,29 @@
+.card {
+  background-color: #c2c5cf;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  color: black;
+  &__image {
+    max-width: 150px;
+  }
+
+  &__title {
+    grid-column: span 2;
+
+    &__subtitle {
+      font-size: 1.25rem;
+      color: rgb(71, 69, 69);
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+  &__units {
+    text-align: center;
+
+    grid-column: span 1;
+  }
+}

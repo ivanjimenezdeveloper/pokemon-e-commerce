@@ -1,0 +1,31 @@
+.shopping-cart {
+  display: grid;
+  grid-template-columns: 1fr 6fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  color: #fff;
+  &__products {
+    grid-column-start: 2;
+    min-height: 100vh;
+    background-color: #838488;
+    ul {
+      list-style-type: none;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 800;
+    &__container {
+      height: fit-content;
+    }
+  }
+
+  &__totals {
+    background-color: purple;
+    min-height: 100vh;
+  }
+
+  &__card-container {
+    max-height: 12rem;
+  }
+}
