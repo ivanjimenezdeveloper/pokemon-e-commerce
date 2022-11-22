@@ -33,7 +33,8 @@
     <article class="row shop__products__cards h-100vh-min row w-100 p20">
       <app-product-card
         class="col-lg-3 col-md-6 col-xs-12 m-b-10 align-items-center"
-        *ngFor="let item of products"
+        *ngFor="let pokemon of products"
+        [pokemon]="pokemon"
       ></app-product-card>
     </article>
     <div class="w-100">

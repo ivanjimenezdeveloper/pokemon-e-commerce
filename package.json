@@ -26,8 +26,10 @@
     "@angular/platform-server": "^15.0.0",
     "@angular/router": "^15.0.0",
     "@nguniversal/express-engine": "^15.0.0",
+    "eslint": "^8.28.0",
     "express": "^4.15.2",
     "mock-browser": "^0.92.14",
+    "prettier": "^2.7.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
