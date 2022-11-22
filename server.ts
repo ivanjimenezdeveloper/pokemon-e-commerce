@@ -46,6 +46,18 @@ export function app(): express.Express {
     });
   });
 
+  const MockBrowser = require('mock-browser').mocks.MockBrowser;
+  const mock = new MockBrowser();
+  global['window'] = mock.getWindow();
+
+  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+  server.engine(
+    'html',
+    ngExpressEngine({
+      bootstrap: AppServerModule,
+    })
+  );
+
   return server;
 }
 
