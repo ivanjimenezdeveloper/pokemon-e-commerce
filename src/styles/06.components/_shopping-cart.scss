@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 6fr 2fr 1fr;
   grid-template-rows: 1fr;
   color: #fff;
+
   &__products {
     grid-column-start: 2;
     min-height: 100vh;
@@ -21,11 +22,11 @@
   }
 
   &__totals {
-    background-color: purple;
+    background-color: #838488;
     min-height: 100vh;
   }
 
   &__card-container {
-    max-height: 12rem;
+    min-height: 12rem;
   }
 }

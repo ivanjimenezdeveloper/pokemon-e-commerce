@@ -12,6 +12,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { QuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
 import { ProductShoppingCartComponent } from './product-shopping-cart/product-shopping-cart.component';
+import { TotalsShoppingCartComponent } from './totals-shopping-cart/totals-shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductShoppingCartComponent } from './product-shopping-cart/product-sh
     ShopComponent,
     ProductCardComponent,
     ProductShoppingCartComponent,
+    TotalsShoppingCartComponent,
   ],
   imports: [
     CommonModule,

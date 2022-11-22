@@ -1,21 +1,23 @@
-<section class="h-100vh-min w-100 shopping-cart m-t-16">
+<section class="h-100vh-min w-100 shopping-cart m-y-16">
   <article
     class="shopping-cart__products d-flex border-rounded-left flex-direction-column"
   >
     <div class="row">
       <span class="shopping-cart__title m-l-24">
         <div class="col-xs-12 m-t-24 shopping-cart__title__container">
-          <span class="shopping-cart__title m-l-24">Productos</span>
+          <span class="shopping-cart__title">Productos</span>
         </div></span
       >
     </div>
 
-    <div class="row m-0 w-100 h-100 flex-flow--column">
+    <div class="row m-0 w-100 h-100">
       <app-product-shopping-cart
         *ngFor="let item of products"
         class="col-xs-12 shopping-cart__card-container m-t-12"
       ></app-product-shopping-cart>
     </div>
   </article>
-  <article class="shopping-cart__totals border-rounded-right"></article>
+  <article class="shopping-cart__totals border-rounded-right">
+    <app-totals-shopping-cart></app-totals-shopping-cart>
+  </article>
 </section>
