@@ -1,4 +1,17 @@
 .totals {
   background-color: #c2c5cf;
-  max-height: 624px;
+  max-height: 400px;
+
+  &__subtotal {
+    font-size: 1.5rem;
+  }
+
+  &__total {
+    font-size: 2rem;
+  }
+
+  &__confirm {
+    height: 4rem;
+    width: 20rem;
+  }
 }
