@@ -29,4 +29,14 @@
   &__card-container {
     min-height: 12rem;
   }
+
+  @media (max-width: 1335px) {
+    &__products {
+      grid-column-start: 1;
+      min-height: fit-content;
+    }
+    grid-template-columns: 1fr;
+
+    grid-template-rows: 1fr 1fr;
+  }
 }

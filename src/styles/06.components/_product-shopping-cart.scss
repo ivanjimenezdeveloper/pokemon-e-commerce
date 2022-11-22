@@ -1,15 +1,20 @@
 .card {
   background-color: #c2c5cf;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
   color: black;
+
+  > div {
+    min-width: 175px;
+  }
+
   &__image {
     max-width: 150px;
   }
 
   &__title {
-    grid-column: span 2;
+    grid-column: span 1;
 
     &__subtitle {
       font-size: 1.25rem;

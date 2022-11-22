@@ -1,9 +1,4 @@
 @for $i from 1 through 56 {
-  .m-x-0 {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .m#{$i} {
     margin: #{2px * $i} !important;
   }
