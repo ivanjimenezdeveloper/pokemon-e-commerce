@@ -1,5 +1,8 @@
+import { IShoppingCart } from './../../models/shopping-cart.model';
+import { ShoppingCartState } from './../../store/shopping-cart/shopping-cart.state';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select, State } from '@ngxs/store';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -10,13 +13,19 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 export class NavBarComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
+  @Select(ShoppingCartState.getTotal)
+  //@ts-ignore
+  $total: Observable<number>;
+
   showMenuMobile: boolean = false;
   isMobile: boolean = false;
   resizeObservable$: Observable<Event> | undefined;
   resizeSubscription$: Subscription = new Subscription();
+  total: number = 0;
 
   ngOnInit() {
     this.onResize();
+    this.$total.subscribe((total: number) => (this.total = total));
   }
 
   navigateHome() {
