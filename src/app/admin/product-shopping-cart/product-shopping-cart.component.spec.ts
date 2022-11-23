@@ -1,3 +1,4 @@
+import { QuantitySelectorComponent } from './../quantity-selector/quantity-selector.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductShoppingCartComponent } from './product-shopping-cart.component';
@@ -8,9 +9,9 @@ describe('ProductShoppingCartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductShoppingCartComponent ]
-    })
-    .compileComponents();
+      imports: [QuantitySelectorComponent],
+      declarations: [ProductShoppingCartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductShoppingCartComponent);
     component = fixture.componentInstance;

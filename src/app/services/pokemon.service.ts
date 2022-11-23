@@ -9,7 +9,6 @@ import {
   IPokemonStat,
   IPokemonTypeAPI,
 } from '../models/pokemon.model';
-import { compareByProperty } from '../utilities/array';
 import { sortBy } from 'lodash';
 
 @Injectable({

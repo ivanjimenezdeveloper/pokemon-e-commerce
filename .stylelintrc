@@ -1,0 +1,4 @@
+{
+  "extends": [ "@marsbased/marstyle-stylelint" ],
+  "ignoreFiles": ["**/vendor/**/*.js", "**/vendor/**/*.css", "/app/src/assets/fonts/icon-font/icons.scss"]
+}

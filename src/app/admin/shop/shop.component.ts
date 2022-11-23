@@ -6,6 +6,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
+  animations: [],
 })
 export class ShopComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}

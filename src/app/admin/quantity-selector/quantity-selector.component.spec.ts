@@ -8,9 +8,8 @@ describe('QuantitySelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuantitySelectorComponent ]
-    })
-    .compileComponents();
+      imports: [QuantitySelectorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(QuantitySelectorComponent);
     component = fixture.componentInstance;

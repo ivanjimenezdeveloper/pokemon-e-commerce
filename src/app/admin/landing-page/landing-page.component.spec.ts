@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { OfferComponent } from '../offer/offer.component';
 
 import { LandingPageComponent } from './landing-page.component';
 
@@ -8,9 +9,8 @@ describe('LandingPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LandingPageComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingPageComponent, OfferComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LandingPageComponent);
     component = fixture.componentInstance;
