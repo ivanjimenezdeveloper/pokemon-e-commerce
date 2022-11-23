@@ -10,6 +10,8 @@ import {
   IPokemonTypeAPI,
 } from '../models/pokemon.model';
 import { compareByProperty } from '../utilities/array';
+import { sortBy } from 'lodash';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,18 +47,7 @@ export class PokemonService {
     let auxPokemonList: IPokemonDetails[] = [];
     this.getPokemonList(limit, offset).subscribe(
       (pokemon: IPokemonListApiResponse) =>
-        pokemon.results.map((pokemonResult: IPokemonListItemApiResponse) =>
-          this.getPokemonDetailsWithURL(pokemonResult.url).subscribe(
-            (pokemonResults2: IPokemonDetails) => {
-              auxPokemonList.push(pokemonResults2);
-              if (auxPokemonList.length === 20) {
-                this.$pokemonDetailList.next(
-                  auxPokemonList.sort(compareByProperty('id'))
-                );
-              }
-            }
-          )
-        )
+        this.getDetaislOfPokemonList(pokemon, auxPokemonList, limit)
     );
   }
 
@@ -85,6 +76,34 @@ export class PokemonService {
       );
   }
 
+  private getDetaislOfPokemonList(
+    pokemon: IPokemonListApiResponse,
+    pokemonListToAdd: IPokemonDetails[],
+    limit: number
+  ) {
+    pokemon.results.map((pokemonResult: IPokemonListItemApiResponse) =>
+      this.getPokemonDetailsWithURL(pokemonResult.url).subscribe(
+        (pokemonWithDetail) =>
+          this.addPokemonToPokemonDetailList(
+            pokemonWithDetail,
+            pokemonListToAdd,
+            limit
+          )
+      )
+    );
+  }
+  private addPokemonToPokemonDetailList(
+    pokemonWithDetail: IPokemonDetails,
+    pokemonListToAdd: IPokemonDetails[],
+    limit: number
+  ) {
+    pokemonListToAdd.push(pokemonWithDetail);
+    if (pokemonListToAdd.length === limit) {
+      this.$pokemonDetailList.next(
+        sortBy(pokemonListToAdd, [(pokemon) => pokemon.id])
+      );
+    }
+  }
   private fixPokemonStats(pokemon: IPokemonDetails) {
     this.initPokemonStatsFix(pokemon);
     pokemon.stats.forEach((stat: IPokemonStat) => {
