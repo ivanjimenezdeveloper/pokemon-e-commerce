@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -17,6 +18,7 @@ describe('ShopComponent', () => {
         HttpClientModule,
         MatToolbarModule,
         MatPaginatorModule,
+        BrowserAnimationsModule,
         MatIconModule,
       ],
       declarations: [ShopComponent, TotalsShoppingCartComponent],
