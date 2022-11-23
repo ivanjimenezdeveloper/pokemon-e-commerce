@@ -7,9 +7,11 @@
           (click)="OnToggleMenu()"
           >close</mat-icon
         >
-        <span class="d-block m-t-3">Menu</span>
+        <span class="d-block m-t-3">Filtros</span>
         <ul class="p-0">
-          <li><button mat-button>Cosa</button></li>
+          <li>
+            <button mat-button (click)="setFilter('poison')">Veneno</button>
+          </li>
           <li><button mat-button>Cosa</button></li>
           <li><button mat-button>Cosa</button></li>
           <li><button mat-button>Cosa</button></li>
@@ -35,14 +37,16 @@
         class="col-lg-3 col-md-6 col-xs-12 m-b-10 align-items-center"
         *ngFor="let pokemon of products"
         [pokemon]="pokemon"
+        [pokemonTypeFilter]="$pokemonFilter.asObservable()"
       ></app-product-card>
     </article>
     <div class="w-100">
       <mat-paginator
-        [length]="200"
-        [pageSizeOptions]="[10, 50, 100]"
+        [length]="numberOfProducts"
+        [pageSizeOptions]="[20, 25, 30]"
         aria-label="Select page"
         class="m-x-20"
+        (page)="onPageChange($event)"
       >
       </mat-paginator>
     </div>

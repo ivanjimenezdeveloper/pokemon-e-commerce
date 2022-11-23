@@ -18,4 +18,17 @@ export class PokemonCardComponentService {
 
     return stringResult;
   }
+
+  getShowPokemonByFilterType(
+    filter: string,
+    types: IPokemonTypeAPI[]
+  ): boolean {
+    if (!filter) return true;
+
+    const result = types.filter(
+      (type: IPokemonTypeAPI) => type.type.name === filter
+    );
+
+    return result.length > 0 ? true : false;
+  }
 }

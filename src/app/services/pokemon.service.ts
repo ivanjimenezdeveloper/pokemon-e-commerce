@@ -17,8 +17,6 @@ import { sortBy } from 'lodash';
 export class PokemonService {
   constructor(private http: HttpClient) {}
   private baseUrl: string = 'https://pokeapi.co/api/v2/';
-  private $pokemonDetailList: BehaviorSubject<IPokemonDetails[]> =
-    new BehaviorSubject<IPokemonDetails[]>([]);
 
   getPokemonList(
     limit: number,
@@ -36,18 +34,6 @@ export class PokemonService {
     return this.http
       .get<IPokemonDetails>(`${this.baseUrl}pokemon/${id}`)
       .pipe(map((pokemon: IPokemonDetails) => this.fixPokemonStats(pokemon)));
-  }
-
-  getPokemonListDetailsVariable(): Observable<IPokemonDetails[]> {
-    return this.$pokemonDetailList.asObservable();
-  }
-
-  getPokemonListDetails(limit: number, offset: number) {
-    let auxPokemonList: IPokemonDetails[] = [];
-    this.getPokemonList(limit, offset).subscribe(
-      (pokemon: IPokemonListApiResponse) =>
-        this.getDetaislOfPokemonList(pokemon, auxPokemonList, limit)
-    );
   }
 
   getPokemonDetailsWithURL(url: string): Observable<IPokemonDetails> {
@@ -75,34 +61,6 @@ export class PokemonService {
       );
   }
 
-  private getDetaislOfPokemonList(
-    pokemon: IPokemonListApiResponse,
-    pokemonListToAdd: IPokemonDetails[],
-    limit: number
-  ) {
-    pokemon.results.map((pokemonResult: IPokemonListItemApiResponse) =>
-      this.getPokemonDetailsWithURL(pokemonResult.url).subscribe(
-        (pokemonWithDetail) =>
-          this.addPokemonToPokemonDetailList(
-            pokemonWithDetail,
-            pokemonListToAdd,
-            limit
-          )
-      )
-    );
-  }
-  private addPokemonToPokemonDetailList(
-    pokemonWithDetail: IPokemonDetails,
-    pokemonListToAdd: IPokemonDetails[],
-    limit: number
-  ) {
-    pokemonListToAdd.push(pokemonWithDetail);
-    if (pokemonListToAdd.length === limit) {
-      this.$pokemonDetailList.next(
-        sortBy(pokemonListToAdd, [(pokemon) => pokemon.id])
-      );
-    }
-  }
   private fixPokemonStats(pokemon: IPokemonDetails) {
     this.initPokemonStatsFix(pokemon);
     pokemon.stats.forEach((stat: IPokemonStat) => {

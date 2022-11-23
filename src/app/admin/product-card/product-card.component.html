@@ -1,13 +1,13 @@
-<mat-card class="product__card" *ngIf="pokemon">
+<mat-card class="product__card" *ngIf="pokemonDetail">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{ pokemon.name }}</mat-card-title>
-    <mat-card-subtitle>{{ getTypesString(pokemon) }}</mat-card-subtitle>
+    <mat-card-title>{{ pokemonDetail.name }}</mat-card-title>
+    <mat-card-subtitle>{{ getTypesString(pokemonDetail) }}</mat-card-subtitle>
   </mat-card-header>
   <img
     mat-card-image
     class="product__image"
-    src="{{ pokemon.sprites.other['official-artwork'].front_default }}"
+    src="{{ pokemonDetail.sprites.other['official-artwork'].front_default }}"
     alt="Photo of a Shiba Inu"
   />
   <mat-card-content>

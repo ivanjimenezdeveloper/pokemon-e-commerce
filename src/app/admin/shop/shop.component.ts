@@ -1,6 +1,12 @@
-import { IPokemonDetails } from './../../models/pokemon.model';
+import { BehaviorSubject } from 'rxjs';
+import {
+  IPokemonDetails,
+  IPokemonListApiResponse,
+  IPokemonListItemApiResponse,
+} from './../../models/pokemon.model';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +17,9 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class ShopComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
   toggleMenu: boolean = false;
-  products: IPokemonDetails[] = [];
+  numberOfProducts: number = 0;
+  products: IPokemonListItemApiResponse[] = [];
+  $pokemonFilter: BehaviorSubject<string> = new BehaviorSubject('');
 
   ngOnInit(): void {
     this.getProducts(20, 0);
@@ -19,14 +27,22 @@ export class ShopComponent implements OnInit {
 
   getProducts(limit: number, offset: number) {
     this.pokemonService
-      .getPokemonListDetailsVariable()
-      .subscribe((result: IPokemonDetails[]) => {
-        this.products = result;
+      .getPokemonList(limit, offset)
+      .subscribe((result: IPokemonListApiResponse) => {
+        this.numberOfProducts = result.count;
+        this.products = result.results;
       });
-    this.pokemonService.getPokemonListDetails(limit, offset);
+  }
+
+  onPageChange(page: PageEvent): void {
+    this.getProducts(page.pageSize, page.pageSize * page.pageIndex);
   }
 
   OnToggleMenu(): void {
     this.toggleMenu = !this.toggleMenu;
+  }
+
+  setFilter(filter: string): void {
+    this.$pokemonFilter.next(filter);
   }
 }
