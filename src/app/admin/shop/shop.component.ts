@@ -3,6 +3,9 @@ import {
   IPokemonDetails,
   IPokemonListApiResponse,
   IPokemonListItemApiResponse,
+  IPokemonTypeAPI,
+  ITypeAPI,
+  ITypesListApiResponse,
 } from './../../models/pokemon.model';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -19,19 +22,28 @@ export class ShopComponent implements OnInit {
   toggleMenu: boolean = false;
   numberOfProducts: number = 0;
   products: IPokemonListItemApiResponse[] = [];
+  types: ITypeAPI[] = [];
+  filterApplied: string = '';
   $pokemonFilter: BehaviorSubject<string> = new BehaviorSubject('');
 
   ngOnInit(): void {
     this.getProducts(20, 0);
+    this.getTypes();
   }
 
-  getProducts(limit: number, offset: number) {
+  getProducts(limit: number, offset: number): void {
     this.pokemonService
       .getPokemonList(limit, offset)
       .subscribe((result: IPokemonListApiResponse) => {
         this.numberOfProducts = result.count;
         this.products = result.results;
       });
+  }
+
+  getTypes(): void {
+    this.pokemonService
+      .getTypesList()
+      .subscribe((typesResponse) => (this.types = typesResponse.results));
   }
 
   onPageChange(page: PageEvent): void {
@@ -43,6 +55,7 @@ export class ShopComponent implements OnInit {
   }
 
   setFilter(filter: string): void {
+    this.filterApplied = filter;
     this.$pokemonFilter.next(filter);
   }
 }

@@ -9,13 +9,28 @@
         >
         <span class="d-block m-t-3">Filtros</span>
         <ul class="p-0">
-          <li>
-            <button mat-button (click)="setFilter('poison')">Veneno</button>
+          <li *ngIf="filterApplied">
+            <span>Filtro Aplicado: {{ filterApplied }}</span>
           </li>
-          <li><button mat-button>Cosa</button></li>
-          <li><button mat-button>Cosa</button></li>
-          <li><button mat-button>Cosa</button></li>
-          <li><button mat-button>Cosa</button></li>
+          <li *ngFor="let item of types">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="setFilter(item.name)"
+            >
+              {{ item.name }}
+            </button>
+          </li>
+          <li>
+            <button
+              mat-button
+              mat-raised-button
+              color="warn"
+              (click)="setFilter('')"
+            >
+              Reset
+            </button>
+          </li>
         </ul>
       </mat-toolbar-row>
     </mat-toolbar>

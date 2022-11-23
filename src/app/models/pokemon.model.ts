@@ -4,6 +4,12 @@ export interface IPokemonListApiResponse {
   previous: string | null;
   results: IPokemonListItemApiResponse[];
 }
+export interface ITypesListApiResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ITypeAPI[];
+}
 
 export interface IPokemonListItemApiResponse {
   results: any;
@@ -48,6 +54,10 @@ export interface IPokemonTypeAPI {
     name: string;
     url: string;
   };
+}
+export interface ITypeAPI {
+  name: string;
+  url: string;
 }
 
 export interface IPokemonAbility {

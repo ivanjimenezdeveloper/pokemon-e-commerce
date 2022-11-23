@@ -1,4 +1,7 @@
-import { IPokemonListItemApiResponse } from './../models/pokemon.model';
+import {
+  IPokemonListItemApiResponse,
+  ITypesListApiResponse,
+} from './../models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject, switchMap } from 'rxjs';
@@ -28,6 +31,10 @@ export class PokemonService {
         offset,
       },
     });
+  }
+
+  getTypesList(): Observable<ITypesListApiResponse> {
+    return this.http.get<ITypesListApiResponse>(`${this.baseUrl}type`);
   }
 
   getPokemonDetails(id: number): Observable<IPokemonDetails> {
