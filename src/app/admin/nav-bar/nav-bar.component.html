@@ -56,8 +56,12 @@
         </button>
 
         <mat-menu #accountMenu="matMenu">
-          <button mat-menu-item>Logout</button>
-          <button mat-menu-item (click)="navigateLogin()">Login</button>
+          <button *ngIf="isLoggedIn" mat-menu-item (click)="logOut()">
+            Logout
+          </button>
+          <button *ngIf="!isLoggedIn" mat-menu-item (click)="navigateLogin()">
+            Login
+          </button>
         </mat-menu>
       </div>
     </div>

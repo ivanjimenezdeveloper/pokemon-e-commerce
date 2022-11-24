@@ -1,3 +1,4 @@
+import { UserState } from './store/user/user.state';
 import { ShoppingCartState } from './store/shopping-cart/shopping-cart.state';
 import { SharedModulesModule } from './shared-modules/shared-modules.module';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,7 @@ import { NgxsModule } from '@ngxs/store';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxsModule.forRoot([ShoppingCartState]),
+    NgxsModule.forRoot([ShoppingCartState, UserState]),
   ],
   providers: [],
   bootstrap: [AppComponent],

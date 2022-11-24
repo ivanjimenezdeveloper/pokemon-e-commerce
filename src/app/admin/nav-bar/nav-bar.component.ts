@@ -1,9 +1,11 @@
+import { UserState } from './../../store/user/user.state';
 import { IShoppingCart } from './../../models/shopping-cart.model';
 import { ShoppingCartState } from './../../store/shopping-cart/shopping-cart.state';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, State } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { setLogOut } from 'src/app/store/user/user.action';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,21 +13,25 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) {}
 
   @Select(ShoppingCartState.getTotal)
-  //@ts-ignore
   $total: Observable<number>;
+
+  @Select(UserState.isLoggedIn)
+  $isLoggedIn: Observable<boolean>;
 
   showMenuMobile: boolean = false;
   isMobile: boolean = false;
   resizeObservable$: Observable<Event> | undefined;
   resizeSubscription$: Subscription = new Subscription();
   total: number = 0;
+  isLoggedIn: boolean = false;
 
   ngOnInit() {
     this.onResize();
-    this.$total.subscribe((total: number) => (this.total = total));
+    this.getTotal();
+    this.getIsLoggedIn();
   }
 
   navigateHome() {
@@ -61,5 +67,19 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   toggleMenu() {
     this.showMenuMobile = !this.showMenuMobile;
+  }
+
+  logOut() {
+    this.store.dispatch(new setLogOut());
+  }
+
+  private getIsLoggedIn(): void {
+    this.$isLoggedIn.subscribe(
+      (isLoggedIn: boolean) => (this.isLoggedIn = isLoggedIn)
+    );
+  }
+
+  private getTotal(): void {
+    this.$total.subscribe((total: number) => (this.total = total));
   }
 }
