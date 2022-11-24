@@ -61,11 +61,20 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
+  private getQuantityFromShoppingCart(pokemon: IPokemonDetails): number {
+    return this.pokemonCardService.getQuantityFromShoppingCart(
+      this.productsInCart.products,
+      pokemon.id
+    );
+  }
   private getPokemonDetails(): void {
     if (this.pokemon) {
       this.pokemonService
         .getPokemonDetailsWithURL(this.pokemon.url)
-        .subscribe((result: IPokemonDetails) => (this.pokemonDetail = result));
+        .subscribe((result: IPokemonDetails) => {
+          this.pokemonDetail = result;
+          this.quantitySelected = this.getQuantityFromShoppingCart(result);
+        });
     }
   }
 

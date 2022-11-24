@@ -1,4 +1,8 @@
-import { IPokemonTypeAPI } from './../../models/pokemon.model';
+import {
+  IShoppingCart,
+  IShoppingCartProduct,
+} from 'src/app/models/shopping-cart.model';
+import { IPokemonTypeAPI, IPokemonDetails } from './../../models/pokemon.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -32,5 +36,14 @@ export class PokemonCardComponentService {
     return result.length > 0 ? true : false;
   }
 
-  addProduct(quantity: number) {}
+  getQuantityFromShoppingCart(
+    productsShopping: IShoppingCartProduct[],
+    pokemonId: number
+  ): number {
+    const result: IShoppingCartProduct | undefined = productsShopping.find(
+      (pokemon: IShoppingCartProduct) => pokemon.product.id === pokemonId
+    );
+
+    return result ? result.quantity : 0;
+  }
 }
