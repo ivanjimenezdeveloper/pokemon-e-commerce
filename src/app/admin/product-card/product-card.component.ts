@@ -1,3 +1,5 @@
+import { SetProductToCart } from 'src/app/store/shopping-cart/shopping-cart.action';
+import { IShoppingCart } from './../../models/shopping-cart.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { PokemonCardComponentService } from './pokemon-card.component.service';
@@ -7,6 +9,7 @@ import {
 } from './../../models/pokemon.model';
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { filter } from 'lodash';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-product-card',
@@ -20,12 +23,21 @@ export class ProductCardComponent implements OnInit {
   @Input()
   pokemonTypeFilter?: Observable<string>;
 
+  @Input()
+  productsInCart: IShoppingCart = {
+    products: [],
+    total: 0,
+  };
+
   @HostBinding('class.d-none') hidePokemon: boolean = false;
 
   pokemonDetail?: IPokemonDetails;
+  quantitySelected: number = 0;
+
   constructor(
     private pokemonCardService: PokemonCardComponentService,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +47,18 @@ export class ProductCardComponent implements OnInit {
 
   getTypesString(pokemon: IPokemonDetails): string {
     return this.pokemonCardService.getTypesPokemonString(pokemon.types);
+  }
+
+  setProductInCart(quantitySelected: number) {
+    if (this.pokemonDetail) {
+      this.quantitySelected = quantitySelected;
+      this.store.dispatch(
+        new SetProductToCart({
+          product: { ...this.pokemonDetail },
+          quantity: this.quantitySelected,
+        })
+      );
+    }
   }
 
   private getPokemonDetails(): void {

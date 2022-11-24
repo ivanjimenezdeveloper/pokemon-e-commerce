@@ -53,6 +53,7 @@
         *ngFor="let pokemon of products"
         [pokemon]="pokemon"
         [pokemonTypeFilter]="$pokemonFilter.asObservable()"
+        [productsInCart]="productsInCart"
       ></app-product-card>
     </article>
     <div class="w-100">

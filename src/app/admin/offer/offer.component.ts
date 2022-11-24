@@ -9,14 +9,5 @@ import { MockEmptyPokemonDetail } from 'src/app/mocks/pokemon.mock';
   styleUrls: ['./offer.component.scss'],
 })
 export class OfferComponent {
-  constructor(private store: Store) {}
-
-  pruebaBorrar(): void {
-    this.store.dispatch(
-      new SetProductToCart({
-        product: { ...MockEmptyPokemonDetail },
-        quantity: 1,
-      })
-    );
-  }
+  constructor() {}
 }

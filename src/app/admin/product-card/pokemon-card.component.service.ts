@@ -31,4 +31,6 @@ export class PokemonCardComponentService {
 
     return result.length > 0 ? true : false;
   }
+
+  addProduct(quantity: number) {}
 }

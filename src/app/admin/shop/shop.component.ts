@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   IPokemonDetails,
   IPokemonListApiResponse,
@@ -10,6 +10,9 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { PageEvent } from '@angular/material/paginator';
+import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
+import { Select } from '@ngxs/store';
+import { IShoppingCart } from 'src/app/models/shopping-cart.model';
 
 @Component({
   selector: 'app-shop',
@@ -19,9 +22,19 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ShopComponent implements OnInit {
   constructor(private pokemonService: PokemonService) {}
+
+  @Select(ShoppingCartState.getProducts)
+  //@ts-ignore
+  $productsInCart: Observable<IShoppingCart>;
+
   toggleMenu: boolean = false;
   numberOfProducts: number = 0;
   products: IPokemonListItemApiResponse[] = [];
+  productsInCart: IShoppingCart = {
+    products: [],
+    total: 0,
+  };
+
   types: ITypeAPI[] = [];
   filterApplied: string = '';
   $pokemonFilter: BehaviorSubject<string> = new BehaviorSubject('');
@@ -29,6 +42,7 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts(20, 0);
     this.getTypes();
+    this.getProductsInCart();
   }
 
   getProducts(limit: number, offset: number): void {
@@ -57,5 +71,11 @@ export class ShopComponent implements OnInit {
   setFilter(filter: string): void {
     this.filterApplied = filter;
     this.$pokemonFilter.next(filter);
+  }
+
+  private getProductsInCart() {
+    this.$productsInCart.subscribe(
+      (productsInCart: IShoppingCart) => (this.productsInCart = productsInCart)
+    );
   }
 }
