@@ -13,6 +13,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
 import { Select } from '@ngxs/store';
 import { IShoppingCart } from 'src/app/models/shopping-cart.model';
+import { ActivatedRoute } from '@angular/router';
+import { IShopURLParams } from 'src/app/models/shop.model';
 
 @Component({
   selector: 'app-shop',
@@ -21,7 +23,10 @@ import { IShoppingCart } from 'src/app/models/shopping-cart.model';
   animations: [],
 })
 export class ShopComponent implements OnInit {
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private route: ActivatedRoute
+  ) {}
 
   @Select(ShoppingCartState.getProducts)
   //@ts-ignore
@@ -43,6 +48,7 @@ export class ShopComponent implements OnInit {
     this.getProducts(20, 0);
     this.getTypes();
     this.getProductsInCart();
+    this.getQueryParams();
   }
 
   getProducts(limit: number, offset: number): void {
@@ -71,6 +77,15 @@ export class ShopComponent implements OnInit {
   setFilter(filter: string): void {
     this.filterApplied = filter;
     this.$pokemonFilter.next(filter);
+  }
+
+  private getQueryParams() {
+    this.route.queryParams.subscribe(
+      // @ts-ignore
+      (params: IShopURLParams) => {
+        if (params.filter) this.setFilter(params.filter);
+      }
+    );
   }
 
   private getProductsInCart() {

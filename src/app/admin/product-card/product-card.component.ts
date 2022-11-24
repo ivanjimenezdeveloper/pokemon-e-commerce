@@ -75,6 +75,7 @@ export class ProductCardComponent implements OnInit {
         .getPokemonDetailsWithURL(this.pokemon.url)
         .subscribe((result: IPokemonDetails) => {
           this.pokemonDetail = result;
+          this.checkFilter();
           this.quantitySelected = this.getQuantityFromShoppingCart(result);
           this.pokemonPrice = this.pokemonCardService.calcPriceOfPokemon(
             this.pokemonDetail.id

@@ -34,6 +34,8 @@
     <app-offer
       class="col-xs-12 col-sm-6"
       *ngFor="let item of offers"
+      [offer]="item"
+      (onNavigate)="navigateToShop($event)"
     ></app-offer>
   </section>
 </div>

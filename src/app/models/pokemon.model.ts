@@ -17,6 +17,13 @@ export interface IPokemonListItemApiResponse {
   url: string;
 }
 
+export interface ILandingPageOffer {
+  subtitle: string;
+  title: string;
+  description: string;
+  type: string;
+}
+
 export interface IPokemonDetails {
   id: number;
   name: string;

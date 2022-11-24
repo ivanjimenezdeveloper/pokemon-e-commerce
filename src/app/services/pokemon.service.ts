@@ -1,19 +1,20 @@
 import { IShoppingCartProduct } from 'src/app/models/shopping-cart.model';
 import {
-  IPokemonListItemApiResponse,
+  ILandingPageOffer,
   ITypesListApiResponse,
 } from './../models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject, switchMap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {
   IPokemonDetails,
   IPokemonListApiResponse,
   IPokemonSpecies,
   IPokemonStat,
-  IPokemonTypeAPI,
 } from '../models/pokemon.model';
-import { sortBy } from 'lodash';
+
+import { of } from 'rxjs';
+import { MockPokemonImages } from '../mocks/pokemon.mock';
 
 @Injectable({
   providedIn: 'root',
@@ -50,14 +51,6 @@ export class PokemonService {
       .pipe(map((pokemon: IPokemonDetails) => this.fixPokemonStats(pokemon)));
   }
 
-  getPokemonCardColor(pokemon: IPokemonDetails): string {
-    return `background-color-${pokemon.types[0].type.name}`;
-  }
-
-  getPokemonTypeColor(type: IPokemonTypeAPI): string {
-    return `btn-${type.type.name}`;
-  }
-
   getPokemonDescriptionById(id: number): Observable<string> {
     return this.http
       .get<IPokemonSpecies>(`${this.baseUrl}pokemon-species/${id}`)
@@ -69,6 +62,35 @@ export class PokemonService {
       );
   }
 
+  getOffers(): Observable<ILandingPageOffer[]> {
+    return of([
+      {
+        subtitle: 'Cuidao que pica',
+        title: 'Veneno',
+        description: 'Compra pokemons de tipo veneno YA',
+        type: 'poison',
+      },
+      {
+        subtitle: 'Cuidao que kema',
+        title: 'Fuego',
+        description: 'Compra pokemons de tipo Fuego YA',
+        type: 'fire',
+      },
+      {
+        subtitle: 'Cuidao que moja',
+        title: 'Agua',
+        description: 'Compra pokemons de tipo Agua YA',
+        type: 'water',
+      },
+      {
+        subtitle: 'Cuidao que no se, no te lo comas',
+        title: 'Planta',
+        description: 'Compra pokemons de tipo Planta YA',
+        type: 'grass',
+      },
+    ]);
+  }
+
   getQuantityFromShoppingCart(
     productsShopping: IShoppingCartProduct[],
     pokemonId: number
@@ -78,6 +100,13 @@ export class PokemonService {
     );
 
     return result ? result.quantity : 0;
+  }
+
+  getPokemonImageByType(type: string): Observable<string> {
+    return of(
+      //@ts-ignore
+      MockPokemonImages[`${type}`]
+    );
   }
 
   private fixPokemonStats(pokemon: IPokemonDetails) {

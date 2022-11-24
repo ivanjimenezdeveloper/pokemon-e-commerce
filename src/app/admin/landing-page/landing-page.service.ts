@@ -6,5 +6,9 @@ import { IData } from 'src/app/models/data.model';
   providedIn: 'root',
 })
 export class LandingPageService {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  navigateToShop(type: string): void {
+    this.router.navigate(['./shop'], { queryParams: { filter: type } });
+  }
 }

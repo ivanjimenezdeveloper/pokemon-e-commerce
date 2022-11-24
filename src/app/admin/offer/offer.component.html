@@ -3,20 +3,38 @@
     <div class="col-xs-12 align-items-center">
       <div class="offer-box row align-content-baseline">
         <div class="col-xs-12 offer-box__row p-y-3 m-t-24">
-          <span class="offer-box__text offer-box__subtitle1"
-            >Puta que oferton</span
-          >
+          <span class="offer-box__text offer-box__subtitle1">{{
+            offer.subtitle
+          }}</span>
         </div>
         <div class="col-xs-12 offer-box__row p-y-3">
-          <span class="offer-box__text offer-box__title">1234</span>
+          <span class="offer-box__text offer-box__title">{{
+            offer.title
+          }}</span>
         </div>
         <div class="col-xs-12 offer-box__row p-y-3">
-          <span class="offer-box__text offer-box__subtitle2">1234</span>
+          <span class="offer-box__text offer-box__subtitle2">{{
+            offer.description
+          }}</span>
         </div>
         <div class="col-xs-12 offer-box__row p-y-3">
           <span class="offer-box__text"
-            ><button mat-raised-button color="primary">Comprar</button></span
+            ><button
+              mat-raised-button
+              color="primary"
+              (click)="onClickBuy(offer.type)"
+            >
+              Comprar
+            </button></span
           >
+        </div>
+        <div class="col-xs-12 offer-box__row">
+          <img
+            mat-card-image
+            class="offer-box__image"
+            src="{{ image }}"
+            alt="Photo of a Shiba Inu"
+          />
         </div>
       </div>
     </div>
