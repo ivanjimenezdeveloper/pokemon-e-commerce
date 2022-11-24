@@ -33,6 +33,7 @@ export class ProductCardComponent implements OnInit {
 
   pokemonDetail?: IPokemonDetails;
   quantitySelected: number = 0;
+  pokemonPrice: number = 0;
 
   constructor(
     private pokemonCardService: PokemonCardComponentService,
@@ -56,6 +57,7 @@ export class ProductCardComponent implements OnInit {
         new SetProductToCart({
           product: { ...this.pokemonDetail },
           quantity: this.quantitySelected,
+          price: this.pokemonPrice,
         })
       );
     }
@@ -74,6 +76,9 @@ export class ProductCardComponent implements OnInit {
         .subscribe((result: IPokemonDetails) => {
           this.pokemonDetail = result;
           this.quantitySelected = this.getQuantityFromShoppingCart(result);
+          this.pokemonPrice = this.pokemonCardService.calcPriceOfPokemon(
+            this.pokemonDetail.id
+          );
         });
     }
   }

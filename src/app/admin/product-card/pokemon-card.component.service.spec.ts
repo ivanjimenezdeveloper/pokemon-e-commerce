@@ -4,7 +4,7 @@ import {
   IShoppingCartProduct,
 } from 'src/app/models/shopping-cart.model';
 import { MockPokemonTypeGrass } from './../../mocks/pokemon.mock';
-import { IPokemonTypeAPI } from './../../models/pokemon.model';
+import { IPokemonTypeAPI, IPokemonDetails } from './../../models/pokemon.model';
 import { TestBed } from '@angular/core/testing';
 
 import { PokemonCardComponentService } from './pokemon-card.component.service';
@@ -60,11 +60,12 @@ describe('PokemonCardComponentService', () => {
     expect(result).toBeTrue();
   });
 
-  it('should return 3 given a product with 3 of quantity', () => {
+  it('should return 3 given a product with 3 of quantity - (getQuantityFromShoppingCart)', () => {
     const paramShoppingCart: IShoppingCartProduct[] = [
       {
         product: { ...MockEmptyPokemonDetail, id: 1 },
         quantity: 3,
+        price: 0,
       },
     ];
 
@@ -78,7 +79,7 @@ describe('PokemonCardComponentService', () => {
     expect(result).toBe(3);
   });
 
-  it('should return 0 given a product with 3 of quantity', () => {
+  it('should return 0 given a product with 3 of quantity - (getQuantityFromShoppingCart)', () => {
     const paramShoppingCart: IShoppingCartProduct[] = [];
     const paramPokemonId = 1;
 
@@ -88,5 +89,21 @@ describe('PokemonCardComponentService', () => {
     );
 
     expect(result).toBe(0);
+  });
+
+  it('should return 16,50 given a id 1 - (calcPriceOfPokemon)', () => {
+    const paramPokemonGiven: number = 1;
+
+    const result: number = service.calcPriceOfPokemon(paramPokemonGiven);
+
+    expect(result).toBe(16.5);
+  });
+
+  it('should return 8,20 given a id 537 - (calcPriceOfPokemon)', () => {
+    const paramPokemonGiven: number = 537;
+
+    const result: number = service.calcPriceOfPokemon(paramPokemonGiven);
+
+    expect(result).toBe(82.05);
   });
 });

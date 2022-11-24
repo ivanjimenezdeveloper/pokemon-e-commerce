@@ -23,6 +23,7 @@ export class ShoppingCartState {
       actualValue.products,
       product
     );
+
     this.addProductToCart(
       alreadyInCart,
       actualValue,
@@ -30,7 +31,10 @@ export class ShoppingCartState {
       product.quantity
     );
 
-    ctx.patchState({ ...actualValue, total: product.quantity });
+    ctx.patchState({
+      ...actualValue,
+      total: this.calcTotal(actualValue.products),
+    });
   }
 
   @Selector()
@@ -72,5 +76,16 @@ export class ShoppingCartState {
         }
       );
     }
+  }
+
+  calcTotal(products: IShoppingCartProduct[]): number {
+    let total = 0;
+
+    products.map(
+      (product: IShoppingCartProduct) =>
+        (total = total + product.price * product.quantity)
+    );
+
+    return total;
   }
 }

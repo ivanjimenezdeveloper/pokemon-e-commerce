@@ -46,4 +46,18 @@ export class PokemonCardComponentService {
 
     return result ? result.quantity : 0;
   }
+
+  calcPriceOfPokemon(pokemonId: number): number {
+    let result: number;
+
+    result = (pokemonId + 10) * 1.5;
+
+    if (result > 100) {
+      result = result / 10;
+    } else if (result > 1000) {
+      result = result / 100;
+    }
+
+    return parseFloat(result.toFixed(2));
+  }
 }

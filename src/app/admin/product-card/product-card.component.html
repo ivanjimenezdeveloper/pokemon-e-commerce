@@ -18,6 +18,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="justify-content-center m-t-6">
+    <div class="m-r-4">{{ pokemonPrice }} €</div>
     <div *ngIf="!quantitySelected">
       <button mat-raised-button color="primary" (click)="setProductInCart(1)">
         Comprar

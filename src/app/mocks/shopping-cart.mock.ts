@@ -12,4 +12,5 @@ export const MockShoppingCart: IShoppingCart = {
 export const MockShoppingCartProducts: IShoppingCartProduct = {
   product: { ...MockEmptyPokemonDetail, id: 1 },
   quantity: 0,
+  price: 0,
 };

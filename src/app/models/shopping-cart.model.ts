@@ -7,4 +7,5 @@ export interface IShoppingCart {
 export interface IShoppingCartProduct {
   product: IPokemonDetails;
   quantity: number;
+  price: number;
 }
