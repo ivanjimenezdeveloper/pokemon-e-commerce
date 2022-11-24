@@ -35,6 +35,10 @@
 .align-content-baseline {
   align-content: baseline;
 }
+.align-content--flex-start {
+  align-content: flex-start !important;
+}
+
 .align-self-center {
   align-self: center;
 }

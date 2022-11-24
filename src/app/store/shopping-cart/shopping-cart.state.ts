@@ -1,4 +1,3 @@
-import { ShoppingCartStateService } from './shopping-cart.state.service';
 import { SetProductToCart } from './shopping-cart.action';
 import {
   IShoppingCart,
@@ -6,7 +5,6 @@ import {
 } from './../../models/shopping-cart.model';
 import { Action, Select, Selector, State, StateContext } from '@ngxs/store';
 
-shoppingCartStateService: ShoppingCartStateService;
 @State<IShoppingCart>({
   name: 'shoppingCart',
   defaults: { products: [], total: 0 },
@@ -55,6 +53,7 @@ export class ShoppingCartState {
     for (let index = 0; index < productsInCart.length; index++) {
       productExists =
         productsInCart[index].product.id === productToCheck.product.id;
+      if (productExists) return true;
     }
 
     return productExists;
@@ -68,10 +67,19 @@ export class ShoppingCartState {
   ): void {
     if (!alreadyInCart) {
       actualValue.products.push(productToAdd);
+    } else if (quantity === 0) {
+      //Delete product extraer a funcion
+      actualValue.products = actualValue.products.filter(
+        (product: IShoppingCartProduct) =>
+          product.product.id !== productToAdd.product.id
+      );
     } else {
+      //change product quantity extraer a funcion
       actualValue.products = actualValue.products.map(
         (product: IShoppingCartProduct) => {
-          product.quantity = quantity;
+          if (product.product.id === productToAdd.product.id) {
+            product.quantity = quantity;
+          }
           return product;
         }
       );

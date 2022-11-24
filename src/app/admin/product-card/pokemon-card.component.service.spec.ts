@@ -60,37 +60,6 @@ describe('PokemonCardComponentService', () => {
     expect(result).toBeTrue();
   });
 
-  it('should return 3 given a product with 3 of quantity - (getQuantityFromShoppingCart)', () => {
-    const paramShoppingCart: IShoppingCartProduct[] = [
-      {
-        product: { ...MockEmptyPokemonDetail, id: 1 },
-        quantity: 3,
-        price: 0,
-      },
-    ];
-
-    const paramPokemonId = 1;
-
-    const result: number = service.getQuantityFromShoppingCart(
-      paramShoppingCart,
-      paramPokemonId
-    );
-
-    expect(result).toBe(3);
-  });
-
-  it('should return 0 given a product with 3 of quantity - (getQuantityFromShoppingCart)', () => {
-    const paramShoppingCart: IShoppingCartProduct[] = [];
-    const paramPokemonId = 1;
-
-    const result: number = service.getQuantityFromShoppingCart(
-      paramShoppingCart,
-      paramPokemonId
-    );
-
-    expect(result).toBe(0);
-  });
-
   it('should return 16,50 given a id 1 - (calcPriceOfPokemon)', () => {
     const paramPokemonGiven: number = 1;
 

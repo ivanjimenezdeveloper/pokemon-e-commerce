@@ -1,3 +1,4 @@
+import { IShoppingCartProduct } from 'src/app/models/shopping-cart.model';
 import {
   IPokemonListItemApiResponse,
   ITypesListApiResponse,
@@ -66,6 +67,17 @@ export class PokemonService {
             pokemonSpecies.flavor_text_entries[0].flavor_text
         )
       );
+  }
+
+  getQuantityFromShoppingCart(
+    productsShopping: IShoppingCartProduct[],
+    pokemonId: number
+  ): number {
+    const result: IShoppingCartProduct | undefined = productsShopping.find(
+      (pokemon: IShoppingCartProduct) => pokemon.product.id === pokemonId
+    );
+
+    return result ? result.quantity : 0;
   }
 
   private fixPokemonStats(pokemon: IPokemonDetails) {

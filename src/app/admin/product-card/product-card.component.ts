@@ -64,7 +64,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   private getQuantityFromShoppingCart(pokemon: IPokemonDetails): number {
-    return this.pokemonCardService.getQuantityFromShoppingCart(
+    return this.pokemonService.getQuantityFromShoppingCart(
       this.productsInCart.products,
       pokemon.id
     );

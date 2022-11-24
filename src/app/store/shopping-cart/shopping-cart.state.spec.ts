@@ -48,4 +48,8 @@ describe('Service: ShoppingCart.state', () => {
 
     expect(result).toBeFalse();
   });
+
+  it('should do the test of calcTotal', () => {
+    expect(false).toBe(true);
+  });
 });

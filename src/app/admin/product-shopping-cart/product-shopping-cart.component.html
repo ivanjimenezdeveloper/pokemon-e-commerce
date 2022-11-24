@@ -3,30 +3,41 @@
     <img
       mat-card-image
       class="card__image border-rounded m-l-10 m-t-10"
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      src="{{
+        product.product.sprites.other['official-artwork'].front_default
+      }}"
       alt="Photo of a Shiba Inu"
     />
   </div>
   <div
     class="card__title d-flex row m-0 p-t-10 align-self--baseline text-align--center"
   >
-    <div class="col-xs-12 card__title__title">Shiba Inu</div>
-    <div class="col-xs-12 p-t-6 card__title__subtitle">Shiba Inu</div>
+    <div class="col-xs-12 card__title__title"></div>
+    <div class="col-xs-12 p-t-6 card__title__subtitle">
+      {{ product.product.name }}
+    </div>
   </div>
   <div
     class="card__units d-flex row m-0 p-t-10 align-self--baseline text-align--center"
   >
     <div class="col-xs-12 card__title__title">Precio por ud</div>
-    <div class="col-xs-12 p-t-6 card__title__subtitle">30,5 €</div>
+    <div class="col-xs-12 p-t-6 card__title__subtitle">
+      {{ product.price }} €
+    </div>
   </div>
   <div class="d-flex row m-0 p-t-10 align-self--baseline text-align--center">
     <div class="col-xs-12 card__title__title">Unidades</div>
     <div class="col-xs-12 p-t-6 card__title__subtitle">
-      <app-quantity-selector></app-quantity-selector>
+      <app-quantity-selector
+        [quantitySelected]="quantitySelected"
+        (onChange)="setProductInCart($event)"
+      ></app-quantity-selector>
     </div>
   </div>
   <div class="d-flex row m-0 p-t-10 align-self--baseline text-align--center">
     <div class="col-xs-12 card__title__title">Total</div>
-    <div class="col-xs-12 p-t-6 card__title__subtitle">16,50€</div>
+    <div class="col-xs-12 p-t-6 card__title__subtitle">
+      {{ product.price * product.quantity }}€
+    </div>
   </div>
 </div>

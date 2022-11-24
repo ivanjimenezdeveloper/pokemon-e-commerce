@@ -10,14 +10,18 @@
       >
     </div>
 
-    <div class="row m-x-0 m-b-12 w-100 h-100">
+    <div class="row m-x-0 m-b-12 w-100 h-100 align-content--flex-start">
       <app-product-shopping-cart
-        *ngFor="let item of products"
+        *ngFor="let item of productsInCart.products"
+        [productsInCart]="productsInCart"
+        [product]="item"
         class="col-xs-12 shopping-cart__card-container m-t-12"
       ></app-product-shopping-cart>
     </div>
   </article>
   <article class="shopping-cart__totals border-rounded-right">
-    <app-totals-shopping-cart></app-totals-shopping-cart>
+    <app-totals-shopping-cart
+      [total]="productsInCart.total"
+    ></app-totals-shopping-cart>
   </article>
 </section>

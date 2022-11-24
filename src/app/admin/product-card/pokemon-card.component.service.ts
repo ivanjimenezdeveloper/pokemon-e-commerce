@@ -36,17 +36,6 @@ export class PokemonCardComponentService {
     return result.length > 0 ? true : false;
   }
 
-  getQuantityFromShoppingCart(
-    productsShopping: IShoppingCartProduct[],
-    pokemonId: number
-  ): number {
-    const result: IShoppingCartProduct | undefined = productsShopping.find(
-      (pokemon: IShoppingCartProduct) => pokemon.product.id === pokemonId
-    );
-
-    return result ? result.quantity : 0;
-  }
-
   calcPriceOfPokemon(pokemonId: number): number {
     let result: number;
 
