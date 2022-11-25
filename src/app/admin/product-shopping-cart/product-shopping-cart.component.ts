@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { SetProductToCart } from './../../store/shopping-cart/shopping-cart.action';
 import { MockShoppingCartProducts } from './../../mocks/shopping-cart.mock';
@@ -23,6 +24,10 @@ export class ProductShoppingCartComponent implements OnInit {
 
   @Input()
   product: IShoppingCartProduct = { ...MockShoppingCartProducts };
+
+  @Input()
+  form: FormGroup;
+
   quantitySelected: number = 0;
   constructor(private store: Store, private pokemonService: PokemonService) {}
   ngOnInit(): void {

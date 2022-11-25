@@ -12,9 +12,10 @@
 
     <div class="row m-x-0 m-b-12 w-100 h-100 align-content--flex-start">
       <app-product-shopping-cart
-        *ngFor="let item of productsInCart.products"
+        *ngFor="let item of productsGroups; let i = index"
         [productsInCart]="productsInCart"
-        [product]="item"
+        [product]="productsInCart.products[i]"
+        [form]="item"
         class="col-xs-12 shopping-cart__card-container m-t-12"
       ></app-product-shopping-cart>
     </div>

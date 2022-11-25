@@ -11,15 +11,16 @@ import { Store } from '@ngxs/store';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
+  error: string;
+  value: string = '';
+
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private store: Store,
     private router: Router
   ) {}
-  form: FormGroup;
-  error: string;
-  value: string = '';
 
   ngOnInit(): void {
     this.initForm();
