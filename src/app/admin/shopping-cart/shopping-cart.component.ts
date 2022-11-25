@@ -1,5 +1,4 @@
-import { ShoppingCartService } from './shopping-cart.service';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IShoppingCart,
   IShoppingCartProduct,
@@ -8,14 +7,13 @@ import {
 import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserState } from 'src/app/store/user/user.state';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
-  providers: [ShoppingCartService],
 })
 export class ShoppingCartComponent implements OnInit {
   @Select(ShoppingCartState.getProducts)
@@ -32,10 +30,7 @@ export class ShoppingCartComponent implements OnInit {
   };
   productsGroups: FormGroup<IShoppingCartProductFormControls>[];
 
-  constructor(
-    private store: Store,
-    private shoppingCartService: ShoppingCartService
-  ) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getUsername();
@@ -46,10 +41,10 @@ export class ShoppingCartComponent implements OnInit {
     if (products) {
       const productGroups: FormGroup<IShoppingCartProductFormControls>[] =
         products.map((shoppingCartProduct: IShoppingCartProduct) =>
-          this.shoppingCartService.getProductsControl(shoppingCartProduct)
+          this.getProductsControl(shoppingCartProduct)
         );
 
-      this.form = this.shoppingCartService.getForm(productGroups);
+      this.form = this.getForm(productGroups);
       //@ts-ignore
       this.productsGroups = this.form.controls.products.controls;
     }
@@ -63,6 +58,33 @@ export class ShoppingCartComponent implements OnInit {
     this.$productsInCart.subscribe((productsInCart: IShoppingCart) => {
       this.productsInCart = productsInCart;
       this.initForm(productsInCart.products);
+    });
+  }
+
+  private getProductsControl(
+    shoppingCartProduct: IShoppingCartProduct
+  ): FormGroup<IShoppingCartProductFormControls> {
+    return this.fb.group({
+      quantity: this.fb.nonNullable.control<number>(
+        shoppingCartProduct.quantity
+      ),
+      price: this.fb.nonNullable.control<number>(shoppingCartProduct.price),
+      productId: this.fb.nonNullable.control<number>(
+        shoppingCartProduct.product.id
+      ),
+      productName: this.fb.nonNullable.control<string>(
+        shoppingCartProduct.product.name,
+        Validators.min(0)
+      ),
+    });
+  }
+
+  private getForm(
+    products: FormGroup<IShoppingCartProductFormControls>[]
+  ): FormGroup {
+    return this.fb.group({
+      username: this.fb.control<string>(''),
+      products: this.fb.array([...products]),
     });
   }
 }

@@ -28,10 +28,30 @@
   <div class="d-flex row m-0 p-t-10 align-self--baseline text-align--center">
     <div class="col-xs-12 card__title__title">Unidades</div>
     <div class="col-xs-12 p-t-6 card__title__subtitle">
-      <app-quantity-selector
-        [quantitySelected]="quantitySelected"
-        (onChange)="setProductInCart($event)"
-      ></app-quantity-selector>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          class="button p-0"
+          (click)="setProductInCart(quantitySelected - 1)"
+        >
+          -
+        </button>
+        <input
+          [formControlName]="'quantity'"
+          class="m-x-6 number-input"
+          [value]="quantitySelected"
+        />
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="button p-0"
+          (click)="setProductInCart(quantitySelected + 1)"
+        >
+          +
+        </button>
+      </div>
     </div>
   </div>
   <div class="d-flex row m-0 p-t-10 align-self--baseline text-align--center">
