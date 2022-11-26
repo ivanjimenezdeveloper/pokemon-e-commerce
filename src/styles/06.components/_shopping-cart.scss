@@ -24,7 +24,6 @@
   &__totals {
     background-color: #838488;
     min-height: 100vh;
-    border-top-right-radius: 0px;
   }
 
   &__card-container {
@@ -39,6 +38,7 @@
     }
     &__totals {
       border-bottom-left-radius: 10px;
+      border-top-right-radius: 0px;
     }
     grid-template-columns: 1fr;
   }
