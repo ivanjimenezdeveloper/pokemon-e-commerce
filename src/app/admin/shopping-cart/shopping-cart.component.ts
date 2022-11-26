@@ -33,6 +33,7 @@ export class ShoppingCartComponent implements OnInit {
     products: [],
     total: 0,
   };
+
   productsGroups: FormGroup<IShoppingCartProductFormControls>[];
 
   constructor(
@@ -72,7 +73,7 @@ export class ShoppingCartComponent implements OnInit {
       this.pokemonService.BuyProducts(purchase).subscribe((result: boolean) => {
         console.log(purchase);
       });
-    } else if (this.form.valid && !this.username) {
+    } else if (!this.form.valid && !this.username) {
       this.openDialog();
     }
   }
@@ -126,8 +127,8 @@ export class ShoppingCartComponent implements OnInit {
     products: FormGroup<IShoppingCartProductFormControls>[]
   ): FormGroup {
     return this.fb.group({
-      username: this.fb.control<string>(''),
-      products: this.fb.array([...products]),
+      username: this.fb.control<string>('', Validators.required),
+      products: this.fb.array(products, Validators.required),
     });
   }
 }
