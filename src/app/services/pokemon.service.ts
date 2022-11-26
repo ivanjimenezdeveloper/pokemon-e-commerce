@@ -4,6 +4,7 @@ import {
 } from 'src/app/models/shopping-cart.model';
 import {
   ILandingPageOffer,
+  IPokemonListItemApiResponse,
   ITypesListApiResponse,
 } from './../models/pokemon.model';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +19,8 @@ import {
 
 import { of } from 'rxjs';
 import { MockPokemonImages } from '../mocks/pokemon.mock';
+import { result } from 'lodash';
+import { firstLetterToUpperCase } from '../utilities/strings';
 
 @Injectable({
   providedIn: 'root',
@@ -30,12 +33,14 @@ export class PokemonService {
     limit: number,
     offset: number
   ): Observable<IPokemonListApiResponse> {
-    return this.http.get<IPokemonListApiResponse>(`${this.baseUrl}pokemon`, {
-      params: {
-        limit,
-        offset,
-      },
-    });
+    return this.http
+      .get<IPokemonListApiResponse>(`${this.baseUrl}pokemon`, {
+        params: {
+          limit,
+          offset,
+        },
+      })
+      .pipe(map(this.getPokemonListNamesToUpperCase));
   }
 
   getTypesList(): Observable<ITypesListApiResponse> {
@@ -45,13 +50,15 @@ export class PokemonService {
   getPokemonDetails(id: number): Observable<IPokemonDetails> {
     return this.http
       .get<IPokemonDetails>(`${this.baseUrl}pokemon/${id}`)
-      .pipe(map((pokemon: IPokemonDetails) => this.fixPokemonStats(pokemon)));
+      .pipe(map((pokemon: IPokemonDetails) => this.fixPokemonDetails(pokemon)));
   }
 
   getPokemonDetailsWithURL(url: string): Observable<IPokemonDetails> {
-    return this.http
-      .get<IPokemonDetails>(url)
-      .pipe(map((pokemon: IPokemonDetails) => this.fixPokemonStats(pokemon)));
+    return this.http.get<IPokemonDetails>(url).pipe(
+      map((pokemon: IPokemonDetails) => {
+        return this.fixPokemonDetails(pokemon);
+      })
+    );
   }
 
   getPokemonDescriptionById(id: number): Observable<string> {
@@ -118,7 +125,30 @@ export class PokemonService {
     return of(false);
   }
 
-  private fixPokemonStats(pokemon: IPokemonDetails) {
+  private fixPokemonDetails(pokemonResponse: IPokemonDetails): IPokemonDetails {
+    return {
+      ...this.fixPokemonStats(pokemonResponse),
+      name: firstLetterToUpperCase(pokemonResponse.name),
+    };
+  }
+
+  private getPokemonListNamesToUpperCase(
+    pokemonResponse: IPokemonListApiResponse
+  ): IPokemonListApiResponse {
+    return {
+      ...pokemonResponse,
+      results: pokemonResponse.results.map(
+        (pokemonMap: IPokemonListItemApiResponse) => {
+          return {
+            ...pokemonMap,
+            name: firstLetterToUpperCase(pokemonMap.name),
+          };
+        }
+      ),
+    };
+  }
+
+  private fixPokemonStats(pokemon: IPokemonDetails): IPokemonDetails {
     this.initPokemonStatsFix(pokemon);
     pokemon.stats.forEach((stat: IPokemonStat) => {
       this.setPokemonStat(pokemon, stat);
