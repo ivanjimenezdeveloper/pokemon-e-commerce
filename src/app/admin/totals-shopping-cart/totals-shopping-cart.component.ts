@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-totals-shopping-cart',
@@ -8,4 +8,11 @@ import { Component, Input } from '@angular/core';
 export class TotalsShoppingCartComponent {
   @Input()
   total: number = 0;
+
+  @Output()
+  OnClickSubmit = new EventEmitter();
+
+  onClickSumbitForm(): void {
+    this.OnClickSubmit.emit();
+  }
 }

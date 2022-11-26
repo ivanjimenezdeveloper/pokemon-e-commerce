@@ -1,6 +1,10 @@
+import { Router } from '@angular/router';
+import { NotLoggedInComponent } from './../not-logged-in/not-logged-in.component';
+import { PokemonService } from 'src/app/services/pokemon.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IShoppingCart,
+  IShoppingCartFormData,
   IShoppingCartProduct,
   IShoppingCartProductFormControls,
 } from 'src/app/models/shopping-cart.model';
@@ -9,11 +13,12 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserState } from 'src/app/store/user/user.state';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss'],
+  templateUrl: './shopping-cart.component.html',
 })
 export class ShoppingCartComponent implements OnInit {
   @Select(ShoppingCartState.getProducts)
@@ -30,7 +35,12 @@ export class ShoppingCartComponent implements OnInit {
   };
   productsGroups: FormGroup<IShoppingCartProductFormControls>[];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private pokemonService: PokemonService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUsername();
@@ -45,13 +55,46 @@ export class ShoppingCartComponent implements OnInit {
         );
 
       this.form = this.getForm(productGroups);
+
+      if (this.username) this.form.patchValue({ username: this.username });
       //@ts-ignore
       this.productsGroups = this.form.controls.products.controls;
     }
   }
 
+  onClickSubmit(): void {
+    if (this.form.valid && this.username) {
+      const purchase: IShoppingCartFormData = {
+        products: this.form.value.products,
+        username: this.form.value.username,
+      };
+
+      this.pokemonService.BuyProducts(purchase).subscribe((result: boolean) => {
+        console.log(purchase);
+      });
+    } else if (this.form.valid && !this.username) {
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(NotLoggedInComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.navigateLogin();
+    });
+  }
+
+  private navigateLogin() {
+    this.router.navigateByUrl('login');
+  }
+
   private getUsername(): void {
-    this.$username.subscribe((username: string) => (this.username = username));
+    this.$username.subscribe((username: string) => {
+      this.username = username;
+    });
   }
 
   private getProductsInCart() {

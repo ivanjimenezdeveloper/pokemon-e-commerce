@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MODULES_EXPORT = [
   FormsModule,
@@ -24,6 +25,7 @@ const MODULES_EXPORT = [
   MatSidenavModule,
   MatCardModule,
   MatPaginatorModule,
+  MatDialogModule,
 ];
 
 @NgModule({

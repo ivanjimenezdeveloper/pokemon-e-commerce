@@ -22,3 +22,8 @@ export interface IShoppingCartProductFormControls {
   productId: FormControl<number>;
   productName: FormControl<string>;
 }
+
+export interface IShoppingCartFormData {
+  products: IShoppingCartProductForm[];
+  username: string;
+}

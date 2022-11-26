@@ -29,7 +29,6 @@ export class ShopComponent implements OnInit {
   ) {}
 
   @Select(ShoppingCartState.getProducts)
-  //@ts-ignore
   $productsInCart: Observable<IShoppingCart>;
 
   toggleMenu: boolean = false;

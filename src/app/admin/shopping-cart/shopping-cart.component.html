@@ -23,6 +23,7 @@
   <article class="shopping-cart__totals border-rounded-right">
     <app-totals-shopping-cart
       [total]="productsInCart.total"
+      (OnClickSubmit)="onClickSubmit()"
     ></app-totals-shopping-cart>
   </article>
 </section>

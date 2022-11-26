@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>No estas logeado</h1>
+<div mat-dialog-content>
+  Para poder finalizar la compra debes estar logeado, no perderas el contenido
+  del carrito
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true">
+    Log In
+  </button>
+</div>

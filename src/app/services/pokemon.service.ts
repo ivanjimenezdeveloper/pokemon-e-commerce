@@ -1,4 +1,7 @@
-import { IShoppingCartProduct } from 'src/app/models/shopping-cart.model';
+import {
+  IShoppingCartFormData,
+  IShoppingCartProduct,
+} from 'src/app/models/shopping-cart.model';
 import {
   ILandingPageOffer,
   ITypesListApiResponse,
@@ -107,6 +110,12 @@ export class PokemonService {
       //@ts-ignore
       MockPokemonImages[`${type}`]
     );
+  }
+
+  BuyProducts(purchase: IShoppingCartFormData): Observable<boolean> {
+    if (purchase) return of(true);
+
+    return of(false);
   }
 
   private fixPokemonStats(pokemon: IPokemonDetails) {
