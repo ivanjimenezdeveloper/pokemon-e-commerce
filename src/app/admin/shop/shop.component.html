@@ -8,29 +8,31 @@
           >close</mat-icon
         >
         <span class="d-block m-t-3">Filtros</span>
-        <ul class="p-0">
-          <li *ngIf="filterApplied">
-            <span>Filtro Aplicado: {{ filterApplied }}</span>
-          </li>
-          <li *ngFor="let item of types">
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="setFilter(item.name)"
-            >
-              {{ item.name }}
-            </button>
-          </li>
-          <li>
-            <button
-              mat-button
-              mat-raised-button
-              color="warn"
-              (click)="setFilter('')"
-            >
-              Reset
-            </button>
-          </li>
+        <ul class="p-0 text-align--center d-flex flex-direction-column w-100">
+          <div class="row">
+            <li *ngIf="filterApplied" class="col-xs-12">
+              <span>Filtro Aplicado: {{ filterApplied }}</span>
+            </li>
+            <li *ngFor="let item of types" class="m-t-6 col-xs-12 col-md-3">
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="setFilter(item.name)"
+              >
+                {{ item.name }}
+              </button>
+            </li>
+            <li class="m-t-6 col-xs-12">
+              <button
+                mat-button
+                mat-raised-button
+                color="warn"
+                (click)="setFilter('')"
+              >
+                Reset
+              </button>
+            </li>
+          </div>
         </ul>
       </mat-toolbar-row>
     </mat-toolbar>
