@@ -13,8 +13,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { QuantitySelectorComponent } from './quantity-selector/quantity-selector.component';
 import { ProductShoppingCartComponent } from './product-shopping-cart/product-shopping-cart.component';
 import { TotalsShoppingCartComponent } from './totals-shopping-cart/totals-shopping-cart.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
+import { PurchaseFinishedComponent } from './purchase-finished/purchase-finished.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
     ProductCardComponent,
     ProductShoppingCartComponent,
     TotalsShoppingCartComponent,
-    NotLoggedInComponent,
+    PurchaseFinishedComponent,
   ],
   imports: [
     CommonModule,

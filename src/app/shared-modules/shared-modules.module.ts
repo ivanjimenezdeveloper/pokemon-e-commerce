@@ -7,11 +7,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
+import { NotLoggedInComponent } from './dialogs/not-logged-in/not-logged-in.component';
 
 const MODULES_EXPORT = [
   FormsModule,
@@ -29,7 +31,7 @@ const MODULES_EXPORT = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [ErrorDialogComponent, NotLoggedInComponent],
   imports: [CommonModule, ...MODULES_EXPORT],
   exports: [MODULES_EXPORT],
 })

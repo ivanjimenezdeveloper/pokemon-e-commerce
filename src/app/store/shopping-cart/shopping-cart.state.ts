@@ -1,4 +1,7 @@
-import { SetProductToCart } from './shopping-cart.action';
+import {
+  SetProductToCart,
+  setRemoveProductsFromCart,
+} from './shopping-cart.action';
 import {
   IShoppingCart,
   IShoppingCartProduct,
@@ -33,6 +36,12 @@ export class ShoppingCartState {
       ...actualValue,
       total: this.calcTotal(actualValue.products),
     });
+  }
+
+  @Action(setRemoveProductsFromCart)
+  setRemoveProductsFromCart(ctx: StateContext<IShoppingCart>) {
+    ctx.patchState({ products: [], total: 0 });
+    return;
   }
 
   @Selector()

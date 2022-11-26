@@ -1,5 +1,6 @@
+import { setRemoveProductsFromCart } from './../../store/shopping-cart/shopping-cart.action';
 import { Router } from '@angular/router';
-import { NotLoggedInComponent } from './../not-logged-in/not-logged-in.component';
+import { NotLoggedInComponent } from '../../shared-modules/dialogs/not-logged-in/not-logged-in.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -14,6 +15,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserState } from 'src/app/store/user/user.state';
 import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from 'src/app/shared-modules/dialogs/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -40,7 +42,8 @@ export class ShoppingCartComponent implements OnInit {
     private fb: FormBuilder,
     private pokemonService: PokemonService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -71,14 +74,19 @@ export class ShoppingCartComponent implements OnInit {
       };
 
       this.pokemonService.BuyProducts(purchase).subscribe((result: boolean) => {
-        console.log(purchase);
+        if (!result) {
+          this.dialog.open(ErrorDialogComponent, { width: '250px' });
+        } else {
+          this.store.dispatch(new setRemoveProductsFromCart());
+          this.router.navigateByUrl('purchase-finished');
+        }
       });
     } else if (!this.form.valid && !this.username) {
-      this.openDialog();
+      this.openNotLoggedInDialog();
     }
   }
 
-  openDialog(): void {
+  openNotLoggedInDialog(): void {
     const dialogRef = this.dialog.open(NotLoggedInComponent, {
       width: '250px',
     });
