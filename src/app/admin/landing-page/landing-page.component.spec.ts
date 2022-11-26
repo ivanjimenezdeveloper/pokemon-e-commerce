@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OfferComponent } from '../offer/offer.component';
 
@@ -9,6 +10,7 @@ describe('LandingPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [LandingPageComponent, OfferComponent],
     }).compileComponents();
 

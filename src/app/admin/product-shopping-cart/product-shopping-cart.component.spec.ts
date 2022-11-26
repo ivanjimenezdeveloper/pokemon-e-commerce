@@ -2,6 +2,10 @@ import { QuantitySelectorComponent } from './../quantity-selector/quantity-selec
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductShoppingCartComponent } from './product-shopping-cart.component';
+import { NgxsModule } from '@ngxs/store';
+import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('ProductShoppingCartComponent', () => {
   let component: ProductShoppingCartComponent;
@@ -9,7 +13,13 @@ describe('ProductShoppingCartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuantitySelectorComponent],
+      imports: [
+        QuantitySelectorComponent,
+        NgxsModule.forRoot([ShoppingCartState]),
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
       declarations: [ProductShoppingCartComponent],
     }).compileComponents();
 

@@ -4,6 +4,10 @@ import { TotalsShoppingCartComponent } from './../totals-shopping-cart/totals-sh
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShoppingCartComponent } from './shopping-cart.component';
+import { NgxsModule, Store } from '@ngxs/store';
+import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
+import { UserState } from 'src/app/store/user/user.state';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ShoppingCartComponent', () => {
   let component: ShoppingCartComponent;
@@ -11,7 +15,11 @@ describe('ShoppingCartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuantitySelectorComponent],
+      imports: [
+        QuantitySelectorComponent,
+        NgxsModule.forRoot([ShoppingCartState, UserState]),
+        HttpClientModule,
+      ],
       declarations: [
         ShoppingCartComponent,
         TotalsShoppingCartComponent,

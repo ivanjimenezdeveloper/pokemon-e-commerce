@@ -1,3 +1,5 @@
+import { NgxsModule } from '@ngxs/store';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { TotalsShoppingCartComponent } from './../totals-shopping-cart/totals-shopping-cart.component';
@@ -7,6 +9,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -20,6 +24,8 @@ describe('ShopComponent', () => {
         MatPaginatorModule,
         BrowserAnimationsModule,
         MatIconModule,
+        RouterTestingModule,
+        NgxsModule.forRoot([ShoppingCartState]),
       ],
       declarations: [ShopComponent, TotalsShoppingCartComponent],
     }).compileComponents();

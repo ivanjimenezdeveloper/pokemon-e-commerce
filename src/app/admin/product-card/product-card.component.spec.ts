@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxsModule } from '@ngxs/store';
+import { ShoppingCartState } from 'src/app/store/shopping-cart/shopping-cart.state';
 
 import { ProductCardComponent } from './product-card.component';
 
@@ -8,9 +11,9 @@ describe('ProductCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductCardComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientModule, NgxsModule.forRoot([ShoppingCartState])],
+      declarations: [ProductCardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductCardComponent);
     component = fixture.componentInstance;

@@ -7,6 +7,7 @@ import {
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, inject } from '@angular/core/testing';
+import { MockEmptyPokemonDetail } from 'src/app/mocks/pokemon.mock';
 
 describe('Service: ShoppingCart.state', () => {
   let service: ShoppingCartState;
@@ -49,7 +50,18 @@ describe('Service: ShoppingCart.state', () => {
     expect(result).toBeFalse();
   });
 
-  it('should do the test of calcTotal', () => {
-    expect(false).toBe(true);
+  it('should give 30 from 1 product with quantity 2 and price 15 - (calcTotal)', () => {
+    const product: IShoppingCartProduct = {
+      product: { ...MockEmptyPokemonDetail },
+      quantity: 2,
+      price: 15,
+    };
+
+    const paramProducts: IShoppingCartProduct[] = [product];
+
+    const result = service.calcTotal(paramProducts);
+    const expectedData: number = 30;
+
+    expect(result).toBe(expectedData);
   });
 });

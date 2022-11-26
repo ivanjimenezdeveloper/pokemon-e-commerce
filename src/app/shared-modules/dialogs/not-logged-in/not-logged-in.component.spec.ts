@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NotLoggedInComponent } from './not-logged-in.component';
 
@@ -8,9 +9,9 @@ describe('NotLoggedInComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotLoggedInComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule],
+      declarations: [NotLoggedInComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NotLoggedInComponent);
     component = fixture.componentInstance;
