@@ -1,6 +1,6 @@
 import { setRemoveProductsFromCart } from './../../store/shopping-cart/shopping-cart.action';
 import { Router } from '@angular/router';
-import { NotLoggedInComponent } from '../../shared-modules/dialogs/not-logged-in/not-logged-in.component';
+import { NotLoggedInComponentDialog } from '../../shared-modules/dialogs/not-logged-in-dialog/not-logged-in-dialog.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -87,7 +87,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   openNotLoggedInDialog(): void {
-    const dialogRef = this.dialog.open(NotLoggedInComponent, {
+    const dialogRef = this.dialog.open(NotLoggedInComponentDialog, {
       width: '250px',
     });
 

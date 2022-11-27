@@ -61,6 +61,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   ngOnDestroy(): void {
     this.resizeSubscription$.unsubscribe();
   }

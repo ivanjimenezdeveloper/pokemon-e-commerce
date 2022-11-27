@@ -1,14 +1,14 @@
 <div class="h-100vh-min shop">
   <section class="shop__menu" [ngClass]="toggleMenu ? 'd-flex' : ''">
     <mat-toolbar color="primary">
-      <mat-toolbar-row class="flex-direction-column shop__toolbar-row h-100">
+      <mat-toolbar-row class="flex-direction--column shop__toolbar-row h-100">
         <mat-icon
-          class="float-right shop__buttonHidden m-r-3 m-t-3"
+          class="float--right shop__buttonHidden m-r-3 m-t-3"
           (click)="OnToggleMenu()"
           >close</mat-icon
         >
         <span class="d-block m-t-3">Filtros</span>
-        <ul class="p-0 text-align--center d-flex flex-direction-column w-100">
+        <ul class="p-0 text-align--center d-flex flex-direction--column w-100">
           <div class="row">
             <li *ngIf="filterApplied" class="col-xs-12">
               <span>Filtro Aplicado: {{ filterApplied }}</span>
@@ -38,7 +38,7 @@
     </mat-toolbar>
   </section>
   <section
-    class="shop__products d-flex align-items-center flex-direction-column m-b-10"
+    class="shop__products d-flex align-items-center flex-direction--column m-b-10"
   >
     <article class="row m-0 m-t-12">
       <button

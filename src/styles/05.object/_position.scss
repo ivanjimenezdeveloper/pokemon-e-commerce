@@ -5,7 +5,7 @@
   position: sticky !important;
 }
 
-.float-right {
+.float--right {
   float: right;
 }
 
@@ -21,7 +21,7 @@
   display: none !important;
 }
 
-.flex-direction-column {
+.flex-direction--column {
   flex-direction: column !important;
 }
 
@@ -29,17 +29,17 @@
   flex-flow: column;
 }
 
-.align-content-center {
+.align-content--center {
   align-content: center;
 }
-.align-content-baseline {
+.align-content--baseline {
   align-content: baseline;
 }
 .align-content--flex-start {
   align-content: flex-start !important;
 }
 
-.align-self-center {
+.align-self--center {
   align-self: center;
 }
 .align-self--baseline {

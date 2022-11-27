@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
-import { NotLoggedInComponent } from './dialogs/not-logged-in/not-logged-in.component';
+import { NotLoggedInComponentDialog } from './dialogs/not-logged-in-dialog/not-logged-in-dialog.component';
 
 const MODULES_EXPORT = [
   FormsModule,
@@ -31,7 +31,7 @@ const MODULES_EXPORT = [
 ];
 
 @NgModule({
-  declarations: [ErrorDialogComponent, NotLoggedInComponent],
+  declarations: [ErrorDialogComponent, NotLoggedInComponentDialog],
   imports: [CommonModule, ...MODULES_EXPORT],
   exports: [MODULES_EXPORT],
 })

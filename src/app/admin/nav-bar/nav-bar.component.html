@@ -13,7 +13,7 @@
         [ngClass]="this.showMenuMobile ? 'm6' : ''"
       >
         <mat-icon
-          class="float-right navbar__buttonHidden"
+          class="float--right navbar__buttonHidden"
           (click)="toggleMenu()"
           >close</mat-icon
         >
@@ -38,7 +38,7 @@
 
         <button mat-button [matMenuTriggerFor]="accountMenu">
           <mat-icon
-            class="align-self-center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
+            class="align-self--center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
             >account_circle</mat-icon
           >
         </button>
@@ -49,7 +49,7 @@
           (click)="navigateShoppingCart()"
         >
           <mat-icon
-            class="align-self-center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
+            class="align-self--center button-icon-size-reset icon-font-size-md m-0 navbar__menu-icon"
             >shopping_cart</mat-icon
           >
           <span class="m-l-2"> {{ total }} €</span>

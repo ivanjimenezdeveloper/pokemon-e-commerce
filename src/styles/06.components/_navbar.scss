@@ -26,13 +26,6 @@
     flex: 1 1 auto;
   }
 
-  &__menu-icon {
-    // @extend .aling-self_center;
-    // @extend .button-icon-size-reset;
-    // @extend .icon-font-size-md;
-    // @extend .m-0;
-  }
-
   @media (max-width: 767px) {
     &__mobile {
       height: 0;

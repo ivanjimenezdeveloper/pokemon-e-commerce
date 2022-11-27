@@ -41,6 +41,7 @@ export class ProductShoppingCartComponent implements OnInit {
       this.quantitySelected = quantitySelected;
       //@ts-ignore
       this.form.controls.quantity.value = quantitySelected;
+
       this.store.dispatch(
         new SetProductToCart({
           product: { ...this.product.product },

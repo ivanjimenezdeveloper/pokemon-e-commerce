@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class PurchaseFinishedComponent {
   constructor(private router: Router) {}
+
   navigateHome() {
     this.router.navigateByUrl('');
   }

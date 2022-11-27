@@ -1,9 +1,1 @@
-.purchase-finished {
-  &__box {
-    background-color: gray;
-    color: #fff;
-    min-height: 500px;
-    width: 500px;
-    border-radius: 10%;
-  }
-}
+@use "../../../styles/06.components/purchase-finished";
