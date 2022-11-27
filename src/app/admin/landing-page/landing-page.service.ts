@@ -9,6 +9,10 @@ export class LandingPageService {
   constructor(private router: Router) {}
 
   navigateToShop(type: string): void {
-    this.router.navigate(['./shop'], { queryParams: { filter: type } });
+    if (type) {
+      this.router.navigate(['./shop'], { queryParams: { filter: type } });
+    } else {
+      this.router.navigateByUrl('shop');
+    }
   }
 }
